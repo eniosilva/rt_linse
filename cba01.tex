@@ -205,9 +205,6 @@ onde $W$ é o número de palavras na sequência de entrada, e $R$ e $D$ são o númer
 %\subsection{Análise do \textit{Front-End}}
 \subsection{Extração de Atributos}
 Visando a obtenção de ótimos atributos discriminativos do sinal de fala, diversas alternativas para parametrizar as formas de onda desse sinal foram e continuam sendo desenvolidas. Dentre elas, a parametrização usando os coeficientes cepstrais da escala mel (\textit{mel frequency-cepstral coefficients-MFCCs}) mostra-se eficaz e é comumente usada no bloco de \textit{front-end} do ASR~\cite{SpokenLanguage}. Essa técnica de análise utiliza a escala mel, expressa por
-%A escala de frequência em Hertz não reflete adequadamente a percepção auditiva humana, dessa forma, diversas alternativas para parametrizar as formas de onda do sinal de fala foram e continuam sendo desenvolidas~\cite{SpokenLanguage}. Dentre elas, a parametrização usando os coeficientes cepstrais da escala mel (\textit{mel frequency-cepstral coefficients-MFCCs}) mostra-se eficaz e é comumente usada como entrada para o bloco de \textit{back-end} do ASR. Essa técnica de análise utiliza a escala mel, expressa por
-%Através de experimentos com diversos ouvintes, chegou-se na seguinte conversão de \textit{f} (em Hertz) para \textit{m} (em mel):
-%A escala em Hertz não reflete bem a percepção auditiva humana. Para representá-la melhor, foi criada a escala mel \cite{SpokenLanguage}. Através de experimentos com diversos ouvintes, chegou-se na seguinte conversão de \textit{f} (em Hertz) para \textit{m} (em mel):
 \begin{equation}
 m=M(f)=1125ln (1 + \frac{f}{700})
 \end{equation}
@@ -216,15 +213,13 @@ m=M(f)=1125ln (1 + \frac{f}{700})
 %\end{equation}
 %$$m=M(f)=1125ln (1 + \frac{f}{700})$$
 %$$f = M^{-1}(m)=700(e^{\frac{m}{1125}}-1)$$
-Os coeficientes MFCCs são eficazes na extração de dados para o reconhecimento de fala. O procedimento de extração consiste em dividir o espectro do sinal em $B$ bandas, com frequências centrais igualmente espaçadas na escala mel.
+O primeiro passo do procedimento de extração de atributos, consiste em dividir o espectro do sinal em $B$ bandas, com frequências centrais igualmente espaçadas na escala mel. Essas bandas de frequências são dispostas através de bancos de filtros triangulares e são computatos os lavores de log e dct de cada banda. Os valores resultantes compõem os coeficientes mfccs, como ilustrado no diagrama da Figura Tal. 
+
+Dessa forma, as $B$ bandas de frequência correspondem ao ponto de partida para a construão dos descritores que compõem os vetores de observação MFCCs. Assim, os compenentes espectrais, ou seja, a resolução em frequecia é diretamente proporcional a qualidade dos descritores MFCCs. A Fig.~\ref{FigBancoFiltro} ilustra a distribuição dos filtros triangulares no dominio da frequencia.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%ESTOU AQUI NA REVISAO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Os coeficientes MFCCs são eficazes na extração de dados para o reconhecimento de fala. O procedimento de extração é ilustrado no diagrama da Figura TAL
-
-O procedimento de extração consiste em dividir o espectro do sinal em $B$ bandas, com frequências centrais igualmente espaçadas na escala mel, Computar o Log e DCT, e selecionar os coeficientes resultantes para comporem os coeficientes mfccs. Dessa forma, as $B$ bandas de frequência correspondem ao ponto de partida para a construão dos descritores que compõem os vetores de observação MFCCs. Assim, os compenentes espectrais, ou seja, a resolução em frequecia é diretamente proporcional a qualidade dos descritores MFCCs. A Fig.~\ref{FigBancoFiltro} ilustra a distribuição dos filtros triangulares no dominio da frequencia.
-
 
 
 a etapa inicial de construção dos descritores que irão compor os vetores de observação MFCC. No dominio do tempo as B bandas são expressas por filtros triangulres H(k)
