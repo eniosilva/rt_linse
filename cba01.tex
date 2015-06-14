@@ -204,7 +204,7 @@ onde $W$ é o número de palavras na sequência de entrada, e $R$ e $D$ são o númer
 
 %\subsection{Análise do \textit{Front-End}}
 \subsection{Extração de Atributos}
-Visando a obtenção de ótimos atributos discriminativos do sinal de fala, diversas alternativas para parametrizar as formas de onda desse sinal foram e continuam sendo desenvolidas. Dentre elas, a parametrização usando os coeficientes cepstrais da escala mel (\textit{mel frequency-cepstral coefficients-MFCCs}) mostra-se eficaz e é comumente usada no bloco de \textit{front-end} do ASR~\cite{SpokenLanguage}. Essa técnica de análise utiliza a escala mel, expressa por
+Visando a obtenção de ótimos atributos discriminativos do sinal de fala, diversas alternativas para parametrizar a forma de onda desse sinal foram e continuam sendo desenvolidas. Dentre elas, a parametrização usando os coeficientes cepstrais da escala mel (\textit{mel frequency-cepstral coefficients-MFCCs}) mostra-se eficaz e é comumente usada no bloco de \textit{front-end} do ASR~\cite{SpokenLanguage}. Essa técnica de análise utiliza a escala mel, expressa por
 \begin{equation}
 m=M(f)=1125ln (1 + \frac{f}{700})
 \end{equation}
@@ -213,7 +213,12 @@ m=M(f)=1125ln (1 + \frac{f}{700})
 %\end{equation}
 %$$m=M(f)=1125ln (1 + \frac{f}{700})$$
 %$$f = M^{-1}(m)=700(e^{\frac{m}{1125}}-1)$$
-O primeiro passo do procedimento de extração de atributos, consiste em dividir o espectro do sinal em $B$ bandas, com frequências centrais igualmente espaçadas na escala mel. Essas bandas de frequências são dispostas através de bancos de filtros triangulares e são computatos os lavores de log e dct de cada banda. Os valores resultantes compõem os coeficientes mfccs, como ilustrado no diagrama da Figura Tal. 
+Onde $f$ representa a frequência na escala Hertz. O primeiro passo do procedimento de extração de atributos, consiste em dividir o espectro do sinal em $B$ bandas, com frequências centrais igualmente espaçadas na escala mel. Essas bandas de frequências são dispostas através de bancos de filtros triangulares e, para cada banda, os lavores de log e da transformada discreta do cosseno (DCT) são computatos. Os valores resultantes compõem os coeficientes mfccs, como ilustrado no diagrama da Figura~\ref{FigMfccScheme}.
+%\begin{figure}[h]
+%\center
+%\includegraphics[width=8cm]{figures/mfcc-scheme.eps}
+%\caption{\label{FigMfccScheme}Diagrama com os passos para extração de características do MFCC.}
+%\end{figure}
 
 Dessa forma, as $B$ bandas de frequência correspondem ao ponto de partida para a construão dos descritores que compõem os vetores de observação MFCCs. Assim, os compenentes espectrais, ou seja, a resolução em frequecia é diretamente proporcional a qualidade dos descritores MFCCs. A Fig.~\ref{FigBancoFiltro} ilustra a distribuição dos filtros triangulares no dominio da frequencia.
 
