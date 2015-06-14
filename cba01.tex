@@ -213,25 +213,24 @@ m=M(f)=1125ln (1 + \frac{f}{700})
 %\end{equation}
 %$$m=M(f)=1125ln (1 + \frac{f}{700})$$
 %$$f = M^{-1}(m)=700(e^{\frac{m}{1125}}-1)$$
-Onde $f$ representa os coeficientes de frequência na escala Hertz. Nesse contexto, o procedimento de extração de atributos consiste em dividir o espectro do sinal em $B$ bandas com frequências centrais igualmente espaçadas na escala mel. Essas bandas de frequências são dispostas através de bancos de filtros triangulares e, para cada banda, os lavores de log e da transformada discreta do cosseno (DCT) são computatos. Os valores resultantes compõem os coeficientes mfccs, como ilustrado no diagrama da Figura~\ref{FigMfccScheme}.
+Onde $f$ representa os coeficientes de frequência na escala Hertz. Nesse contexto, o procedimento de extração de atributos consiste em dividir o espectro do sinal em $B$ bandas com frequências centrais igualmente espaçadas na escala mel. Essas bandas de frequências são dispostas através de bancos de filtros triangulares e, para cada banda, os valores de log e da transformada discreta do cosseno (DCT) são computatos. Os valores resultantes compõem os coeficientes mfccs, como ilustrado no diagrama da Figura~\ref{FigMfccScheme}.
 %\begin{figure}[h]
 %\center
 %\includegraphics[width=8cm]{figures/mfcc-scheme.eps}
 %\caption{\label{FigMfccScheme}Diagrama com os passos para extração de características do MFCC.}
 %\end{figure}
-Dessa forma, as $B$ bandas de frequência correspondem a um ponto crucial para a construão dos descritores que compõem os vetores de observação MFCCs. Assim, os compenentes espectrais, ou seja, a resolução em frequecia é diretamente proporcional a qualidade dos descritores MFCCs. Então, quanto mais informações discriminativas, mais rico será o vertor de observação MFCC. A Fig.~\ref{FigBancoFiltro} ilustra a distribuição dos filtros triangulares no dominio da frequencia para espectros de sianis WB e NB.
+Dessa forma, as $B$ bandas de frequência representam uma importante etapa para a construção bem sucedida de descritores discriminativos que compõem os vetores de observação MFCCs. Assim, a resolução dos compenentes espectrais, ou seja, a resolução em frequecia é diretamente proporcional a qualidade dos descritores MFCCs. Então, por apresentarem uma maior faixa de frequência, sinais WB possuem uma quantidade maior de descritores na análise MFCC quando comparados à sinais NB. Entretanto, sinais NB podem ser aprimorados através do sistema de ABWE que possibilita a estimação e sí1nteze de novos componentes de frequência capazes de ampliar a resolução do espectro e preencher mais filtros triangulares dispostos na escala mel. A Figura~\ref{FigBancoFiltro} ilustra o processo de distribuição dos espectros NB e WB nos filtros triangulares correspondentes as $B$ bandas de frequencia.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%ESTOU AQUI NA REVISAO
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Por apresentarem uma maior faixa de frequência, sinais WB possuem uma quantidade maior de descritores na análise MFCC quando comparados à sinais NB. Entretanto, os sinais NB provenientes da PSTN podem ser realçados através do sistema de ABWE que possibilita a estimação e a sí1nteze dos componentes de frequência discriminativas capazes de preencher todos os filtros triangulares dispostos na escala mel, exemplificado na Figura~\ref{FigBancoFiltro}.
-
+%quanto mais informações discriminativas, mais rico será o vertor de observação MFCC. 
+%A Fig.~\ref{FigBancoFiltro} ilustra a distribuição dos filtros triangulares no dominio da frequencia para espectros de sianis WB e NB.
 \begin{figure}[h]
 \center
 \includegraphics[width=8cm]{figures/BancoFiltros.eps}
 \caption{\label{FigBancoFiltro}Banco de filtros $H(k)$ e componentes espectrais.}
 \end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%ESTOU AQUI NA REVISAO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Background em extensão artificial de largura de banda}
 \label{backgroundABWE}
