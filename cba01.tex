@@ -204,7 +204,7 @@ onde $W$ é o número de palavras na sequência de entrada, e $R$ e $D$ são o númer
 
 %\subsection{Análise do \textit{Front-End}}
 \subsection{Extração de Atributos}
-Visando a obtenção de ótimos atributos discriminativos do sinal de fala, diversas alternativas para parametrizar a forma de onda desse sinal foram e continuam sendo desenvolidas. Dentre elas, a parametrização usando os coeficientes cepstrais da escala mel (\textit{mel frequency-cepstral coefficients-MFCCs}) mostra-se eficaz e é comumente usada no bloco de \textit{front-end} do ASR~\cite{SpokenLanguage}. Essa técnica de análise utiliza a escala mel, expressa por
+Visando a obtenção de ótimos atributos discriminativos do sinal de fala, diversas alternativas para parametrizar as formas de onda desses sinais foram e continuam sendo desenvolidas. Dentre elas, a parametrização usando os coeficientes cepstrais da escala mel (\textit{mel frequency-cepstral coefficients-MFCCs}) mostra-se eficaz e é comumente usada no bloco de \textit{front-end} do ASR~\cite{SpokenLanguage}. Essa técnica de análise utiliza a escala mel, expressa por
 \begin{equation}
 m=M(f)=1125ln (1 + \frac{f}{700})
 \end{equation}
@@ -213,28 +213,19 @@ m=M(f)=1125ln (1 + \frac{f}{700})
 %\end{equation}
 %$$m=M(f)=1125ln (1 + \frac{f}{700})$$
 %$$f = M^{-1}(m)=700(e^{\frac{m}{1125}}-1)$$
-Onde $f$ representa a frequência na escala Hertz. O primeiro passo do procedimento de extração de atributos, consiste em dividir o espectro do sinal em $B$ bandas, com frequências centrais igualmente espaçadas na escala mel. Essas bandas de frequências são dispostas através de bancos de filtros triangulares e, para cada banda, os lavores de log e da transformada discreta do cosseno (DCT) são computatos. Os valores resultantes compõem os coeficientes mfccs, como ilustrado no diagrama da Figura~\ref{FigMfccScheme}.
+Onde $f$ representa os coeficientes de frequência na escala Hertz. Nesse contexto, o procedimento de extração de atributos consiste em dividir o espectro do sinal em $B$ bandas com frequências centrais igualmente espaçadas na escala mel. Essas bandas de frequências são dispostas através de bancos de filtros triangulares e, para cada banda, os lavores de log e da transformada discreta do cosseno (DCT) são computatos. Os valores resultantes compõem os coeficientes mfccs, como ilustrado no diagrama da Figura~\ref{FigMfccScheme}.
 %\begin{figure}[h]
 %\center
 %\includegraphics[width=8cm]{figures/mfcc-scheme.eps}
 %\caption{\label{FigMfccScheme}Diagrama com os passos para extração de características do MFCC.}
 %\end{figure}
-
-Dessa forma, as $B$ bandas de frequência correspondem ao ponto de partida para a construão dos descritores que compõem os vetores de observação MFCCs. Assim, os compenentes espectrais, ou seja, a resolução em frequecia é diretamente proporcional a qualidade dos descritores MFCCs. A Fig.~\ref{FigBancoFiltro} ilustra a distribuição dos filtros triangulares no dominio da frequencia.
+Dessa forma, as $B$ bandas de frequência correspondem a um ponto crucial para a construão dos descritores que compõem os vetores de observação MFCCs. Assim, os compenentes espectrais, ou seja, a resolução em frequecia é diretamente proporcional a qualidade dos descritores MFCCs. Então, quanto mais informações discriminativas, mais rico será o vertor de observação MFCC. A Fig.~\ref{FigBancoFiltro} ilustra a distribuição dos filtros triangulares no dominio da frequencia para espectros de sianis WB e NB.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%ESTOU AQUI NA REVISAO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-a etapa inicial de construção dos descritores que irão compor os vetores de observação MFCC. No dominio do tempo as B bandas são expressas por filtros triangulres H(k)
-Equação do Filtro
-A Fig.~\ref{FigBancoFiltro} ilustra a distribuição de H(k) no dominio da frequencia.
-
-
-Para isso, são aplicados filtros digitais triangulares $H(k)$, como mostra a Fig.~\ref{FigBancoFiltro}.
-
-Por apresentarem uma maior faixa de frequência, sinais WB possuem uma quantidade maior de descritores na análise MFCC quando comparados à sinais NB. Portanto, os sinais NB provenientes da PSTN podem ser realçados através do sistema de ABWE que possibilitará a estimação e a sí1nteze dos componentes de frequência discriminativas capazes de preencher todos os filtros $H(k)$ dispostos na escala mel, exemplificado na Figura~\ref{FigBancoFiltro}.
+Por apresentarem uma maior faixa de frequência, sinais WB possuem uma quantidade maior de descritores na análise MFCC quando comparados à sinais NB. Entretanto, os sinais NB provenientes da PSTN podem ser realçados através do sistema de ABWE que possibilita a estimação e a sí1nteze dos componentes de frequência discriminativas capazes de preencher todos os filtros $H(k)$ dispostos na escala mel, exemplificado na Figura~\ref{FigBancoFiltro}.
 
 \begin{figure}[h]
 \center
