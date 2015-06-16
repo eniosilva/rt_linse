@@ -230,17 +230,14 @@ Portanto, a resolução dos compenentes espectrais, ou seja, a resolução em frequê
 \includegraphics[width=8cm]{figures/BancoFiltros.eps}
 \caption{\label{FigBancoFiltro}Distribuição dos espectros NB e WB nos B bancos de filtros triangulares.}
 \end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%ESTOU AQUI NA REVISAO
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Background em extensão artificial de largura de banda}
 \label{backgroundABWE}
-O objetivo de um sistema de ABWE é realçar o sinal de fala NB, aprimorando sua qualidade e fazendo com que esse sinal se assemelhe à um sinal WB. Isso é possível através da estimação dos componentes de frequências acima de $3.4$ kHz. A idéia básica de um sistema de ABWE é recriar artificialmente componentes de alta frequência, convertendo um sinal NB em um sinal WB, isto é, restaurando as propriedades acústicas pertinentes a WB~\cite{EnioSBrT2013}.
+O objetivo de um sistema de ABWE é realçar o sinal de fala NB, aprimorando sua qualidade e fazendo com que esse sinal se assemelhe à um sinal WB. Isso é possível através da estimação dos componentes de frequências acima de $3.4$ kHz. Assim, a idéia básica de um sistema de ABWE é recriar artificialmente componentes de alta frequência, convertendo um sinal NB em um sinal WB, isto é, restaurando as propriedades acústicas pertinentes a WB~\cite{EnioSBrT2013}.
 %O objetivo de um sistema de ABWE é realçar o sinal de fala NB, aprimorando sua qualidade e fazendo com que esse sinal se assemelhe à um sinal WB através da estimação dos componentes de frequências acima de $3.4$ kHz. A idéia básica de um sistema de ABWE é recriar artificialmente componentes de alta frequência, convertendo um sinal NB em um sinal WB, isto é, restaurando as propriedades acústicas pertinentes a WB. Essa técnica assume que ambos sinais, NB e WB, são gerados pelo mesmo modelo fonte-filtro de produção da fala~\cite{EnioSBrT2013}.
 
 \subsection{Sistema de ABWE}
-A Fig.~\ref{FigSistemaABWE} ilustra o diagrama de blocos do sistema de ABWE implementado em \cite{EnioSBrT2013} e aqui novamente adotado. O diagrama tem como base uma estrutura de três estágios de processamento, descritos como segue:
+A Fig.~\ref{FigSistemaABWE} ilustra o diagrama de blocos do sistema de ABWE discutido em \cite{EnioSBrT2013} e aqui adotado. O diagrama tem como base uma estrutura de três estágios de processamento, descritos como segue:
 \begin{enumerate}
  \item Estágio I. Estimação do sinal de excitação, $\hat{s}_{\UP}^{\exci}(n)$, através de predição linear (\textit{code-excited linear prediction} - CELP)~\cite{Bernd2007}.
  \item Estágio II. Filtragem do sinal de excitação resultante do primeiro estágio através dos envelopes temporal e espectral do trato-vocal estimados a partir de uma consulta a um conjunto de \textit{codebooks} baseados em classificação fonética.
@@ -269,9 +266,13 @@ Os estágios que compõem o sistema ABWE são descritos com detalhes em ~\cite{Enio
 %\caption{\label{FigSistemaASR}Diagrama do ASR.}
 %\end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%ESTOU AQUI NA REVISAO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{\textit{Framework}: ASR com ABWE}
 \label{FrameworkASRABWE}
-No cenário de telefonia, sistemas NSR são aptos à utilização dos recusrsos computacionais de um servidor remoto, desta forma técnicas de processamento digital de sinais, tais como o realce da fala, podem ser melhor exploradas. Neste contexto, este artigo propõe a utilização de um \textit{framework} em que o sinal NB $S_{nb}$, fornecido pela PSTN, é realçado através de procedimentos de ABWE, gerando assim um sinal WB sintético $\hat{S}_{wb}$ na entrada do ASR, como ilustrado na Fig.~\ref{FigSistemaNSR}.
+No cenário de telefonia, sistemas NSR são adequados à utilização dos recusrsos computacionais de um servidor remoto. Dessa forma, técnicas de processamento digital de sinais, tais como o realce da fala, podem ser melhor exploradas. Nesse contexto, este artigo propõe a utilização de um \textit{framework} em que o sinal NB $S_{NB}$, fornecido pela PSTN, é realçado através de procedimentos de ABWE, gerando assim um sinal WB sintético $\hat{S}_{WB}$ na entrada do ASR, como ilustrado na Fig.~\ref{FigSistemaNSR}.
 \begin{figure*}
   \centering
   %\includegraphics{figuras/Fig_1.eps}
@@ -280,15 +281,6 @@ No cenário de telefonia, sistemas NSR são aptos à utilização dos recusrsos compu
   \centering
   \caption{\label{FigSistemaNSR}Diagrama do ASR com ABWE em um sistema NSR.}
 \end{figure*}
-
-%\begin{figure}[ht]
-%%\begin{minipage}{0.5\linewidth}
-%\center
-%\includegraphics[width=8cm]{nsr02.eps}
-%\caption{\label{FigSistemaNSR}Diagrama do ASR com ABWE em um sistema NSR.}
-%%\end{minipage}
-%\end{figure}
-
 Dessa maneira, o sistema NSR será composto pelos blocos de ABWE, seguido dos blocos do ASR: \textit{front-end} e \textit{back-end}.
 
 %Sendo assim, de acordo com a proposta de \textit{framework} ilustrada na Fig.~\ref{FigSistemaNSR}, no sistema NSR estão contidos os blocos de ABWE, seguido dos blocos do ASR: \textit{front-end} e \textit{back-end}. Estes blocos são descritos nas seções subsequentes.
