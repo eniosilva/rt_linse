@@ -94,7 +94,7 @@ Florianópolis, SC - Brasil}
 \section{Introdução}
 Atualmente o mercado de telefonia dispõe de diversos serviços interativos, tais como os serviços presentes em sistemas automatizados de \textit{help desk}, portais de voz, gerenciamento de diálogos em unidades de resposta audível (URA) e outros tipos de atendimento via \textit{call centers} \cite{Oliveira2012}, como ilustrado na Fig.~\ref{ExemploURA}.
 
-Tais serviços auxiliam o acesso de usuários da rede pública de telefonia (\textit{public switched telephone network} - PSTN) a informações, via navegação em menus interativos. Esses menus podem ser acessados com a ajuda do teclado telefônico ou diretamente através de comandos de fala, em que o assunto desejado pelo usuário é automaticamente identificado usando sistemas de reconhecimento automático de fala (\textit{automatic speech recognition} - ASR) aplicados à PSTN \cite{Nelson2011}. Como a tecnologia de serviços comandados por fala é altamente dependente do desempenho dos sistemas de ASR, as pesquisas sobre modelagem estatísticas de ASR continuam em franca evolução e se destacam como um tópico ativo do estado-da-arte em processamento digital de sinais \cite{Shaughnessy2013}, \cite{Livescu2012},\cite{artigo de 2014}.
+Tais serviços auxiliam o acesso de usuários da rede pública de telefonia (\textit{public switched telephone network} - PSTN) a informações, via navegação em menus interativos. Esses menus podem ser acessados com a ajuda do teclado telefônico ou diretamente através de comandos de fala, em que o assunto desejado pelo usuário é automaticamente identificado usando sistemas de reconhecimento automático de fala (\textit{automatic speech recognition} - ASR) aplicados à PSTN \cite{Nelson2011}. Como a tecnologia de serviços comandados por fala é altamente dependente do desempenho dos sistemas de ASR, as pesquisas sobre modelagem estatísticas de ASR continuam em franca evolução e se destacam como um tópico ativo do estado-da-arte em processamento digital de sinais \cite{Shaughnessy2013}, \cite{Livescu2012}, \cite{Bauer2014}.
 
 \begin{figure}[h]
 %\begin{minipage}{0.5\linewidth}
@@ -213,20 +213,20 @@ m=M(f)=1125ln (1 + \frac{f}{700})
 %\end{equation}
 %$$m=M(f)=1125ln (1 + \frac{f}{700})$$
 %$$f = M^{-1}(m)=700(e^{\frac{m}{1125}}-1)$$
-Onde $f$ representa os coeficientes de frequência na escala Hertz. Nesse contexto, o procedimento de extração de atributos consiste em dividir o espectro do sinal em $B$ bandas com frequências centrais igualmente espaçadas na escala mel. Essas bandas de frequências são dispostas através de bancos de filtros triangulares e, para cada banda, os valores do logarítmo da energia e da transformada discreta do cosseno (DCT) são computatos. Os valores resultantes compõem os coeficientes mfccs, como ilustrado no diagrama da Figura~\ref{FigMfccScheme}.
-%\begin{figure}[h]
-%\center
-%\includegraphics[width=8cm]{figures/mfcc-scheme.eps}
-%\caption{\label{FigMfccScheme}Diagrama com os passos para extração de características do MFCC.}
-%\end{figure}
-Dessa forma, as $B$ bandas de frequência representam uma importante etapa para a construção bem sucedida de descritores discriminativos que compõem os vetores de observação MFCCs. Assim, a resolução dos compenentes espectrais, ou seja, a resolução em frequecia é diretamente proporcional a qualidade dos descritores MFCCs. Então, por apresentarem uma maior faixa de frequência, sinais WB possuem uma quantidade maior de descritores na análise MFCC quando comparados à sinais NB. Entretanto, sinais NB podem ser aprimorados através do sistema de ABWE que possibilita a estimação e sí1nteze de novos componentes de frequência capazes de ampliar a resolução do espectro e preencher mais filtros triangulares dispostos na escala mel. A Figura~\ref{FigBancoFiltro} ilustra o processo de distribuição dos espectros NB e WB nos filtros triangulares correspondentes as $B$ bandas de frequencia.
+Onde $f$ representa os coeficientes de frequência na escala Hertz. Nesse contexto, o procedimento de extração de atributos consiste em dividir o espectro do sinal em $B$ bandas com frequências centrais igualmente espaçadas na escala mel. Essas bandas de frequências são dispostas através de bancos de filtros triangulares e, para cada banda, os valores do logarítmo da energia e da transformada discreta do cosseno (\textit{Discrete Cosine Transform-DCT}	) são computatos. Os valores resultantes compõem os coeficientes MFCCs, como ilustrado no diagrama da Figura~\ref{FigMfccScheme}.
+\begin{figure}[h]
+\center
+\includegraphics[width=8cm]{figures/mfcc-scheme.eps}
+\caption{\label{FigMfccScheme}Diagrama com os passos para extração de características do MFCC.}
+\end{figure}
+Dessa forma, as $B$ bandas de frequência representam uma importante etapa para a construção bem sucedida de descritores discriminativos que compõem os vetores de observação MFCCs. Assim, a resolução dos compenentes espectrais, ou seja, a resolução em frequecia é diretamente proporcional a qualidade dos descritores MFCCs. Então, por apresentarem uma maior faixa de frequência, sinais WB possuem uma quantidade maior de descritores na análise MFCC quando comparados à sinais NB. Entretanto, sinais NB podem ser aprimorados através do sistema de ABWE que possibilita a estimação e sínteze de novos componentes de frequência capazes de ampliar a resolução do espectro e preencher mais filtros triangulares dispostos na escala mel. A Figura~\ref{FigBancoFiltro} ilustra o processo de distribuição dos espectros NB e WB nos filtros triangulares correspondentes as $B$ bandas de frequencia.
 
 %quanto mais informações discriminativas, mais rico será o vertor de observação MFCC. 
 %A Fig.~\ref{FigBancoFiltro} ilustra a distribuição dos filtros triangulares no dominio da frequencia para espectros de sianis WB e NB.
 \begin{figure}[h]
 \center
 \includegraphics[width=8cm]{figures/BancoFiltros.eps}
-\caption{\label{FigBancoFiltro}Banco de filtros $H(k)$ e componentes espectrais.}
+\caption{\label{FigBancoFiltro}Distribuição dos espectros NB e WB nos B bancos de filtros triangulares.}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%ESTOU AQUI NA REVISAO
