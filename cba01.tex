@@ -295,9 +295,9 @@ e
 \begin{equation}
        \mathbf{f}_{\LSF,n} = [f_{\LSF,n}(1),\ldots,f_{\LSF,n}(19)]\transp
 \end{equation}
-onde o vetor $\mathbf{t}_n$ representa o envelope temporal contendo energias logarítmicas de $16$ subquadros ($1,25$ ms cada) \cite{Bernd2007} e o vetor $\mathbf{f}_{\LSF,n}$, componentes LSFs que caracterizam o envelope espectral. Tais parâmetros são estimados através de consulta a um conjunto de \textit{codebooks} selecionados de acordo com suas classes fonéticas~\cite{EnioSBrT2013}. 
+onde o vetor $\mathbf{t}_n$ representa o envelope temporal contendo energias logarítmicas de $16$ subquadros ($1,25$ ms cada) \cite{Bernd2007} e o vetor $\mathbf{f}_{\LSF,n}$ contém os componentes LSFs que caracterizam o envelope espectral. Tais parâmetros são estimados através de consulta a um conjunto de \textit{codebooks} selecionados de acordo com suas classes fonéticas~\cite{EnioSBrT2013}. 
 
-Como ilustrado na Fig.~\ref{FigTreinamentoCB}, o processo de treinamento do sistema de ABWE consiste na construção do conjunto de \textit{Codebooks} correspodentes aos envelopes do trato vocal no processo de geração da fala.
+Como ilustrado na Fig.~\ref{FigTreinamentoCB}, o processo de treinamento do sistema de ABWE consiste na construção do conjunto de \textit{codebooks} correspodentes aos envelopes do trato vocal no processo de geração da fala.
 
 \begin{figure}[h]
 \center
@@ -305,7 +305,7 @@ Como ilustrado na Fig.~\ref{FigTreinamentoCB}, o processo de treinamento do sist
 \caption{\label{FigTreinamentoCB}Etapa do processo de treinamento de \textit{codebooks}.}
 \end{figure}
 
-O processo de treinamento aqui utilizado considera as técnicas de \textit{codebooks} duais de banda estreita $X^{\NB}_{\CB}$ e de banda alta $Y^{\UP}_{\CB}$~\cite{unno05}, criados a partir do agrupamento dos vetores de parâmetros  $x^{NB}$ e $y^{UP}$ em classes fonéticas dispostas de acordo com a Tabela~\ref{TebelaClasses}
+O processo de treinamento aqui utilizado considera as técnicas de \textit{codebooks} duais de banda estreita $X^{\NB}_{\CB}$ e de banda alta $Y^{\UP}_{\CB}$~\cite{unno05}, criados a partir do agrupamento dos vetores de parâmetros $\mathbf{x}^{NB}$ e $\mathbf{y}^{UP}$ em classes fonéticas dispostas de acordo com a Tabela~\ref{TebelaClasses}
 
 %\begin{table}[htb]
 %  \caption{Distribuição de classes fonéticas  para sinais de fala}\label{TebelaClasses}
@@ -343,12 +343,12 @@ O processo de treinamento aqui utilizado considera as técnicas de \textit{codebo
   \end{center}
 \end{table}
 
-Dessa maneira, um treinamento supervisionado é realizado e o agrupamento dos vetores de parâmetros  $x^{NB}$ e $y^{UP}$ torna-se mais discriminativo. Assim cada \textit{codebook} é associado a uma classe fonética específica $\phi$,
+Desta maneira, um treinamento supervisionado é realizado e o agrupamento dos vetores de parâmetros $\mathbf{x}^{NB}$ e $\mathbf{y}^{UP}$ torna-se mais discriminativo. Assim cada \textit{codebook} é associado a uma classe fonética específica $\phi$, isto é, 
 \begin{equation}
 \begin{array}{r}
 Y^{\UP}_{{\CB}_{\phi}}=E\{Y^{\UP} | \phi=Cl_i\}\\ % \, \in \, \Re^9 %\, \forall \, i=1 \ldots 9
 X^{\NB}_{{\CB}_{\phi}}=E\{X^{\NB} | \phi=Cl_i\} 
-\end{array}, \quad \in \, \Re^9
+\end{array}, \quad \forall i \in \, [1,9]
 \end{equation}
 
 %Após o processo de clusterização e classificação fonética, a seleção de \textit{codebooks} NB e WB torna-se mais discriminativa e, consequentemente, mais apropriada para a etapa de treinamento.
@@ -362,10 +362,10 @@ X^{\NB}_{{\CB}_{\phi}}=E\{X^{\NB} | \phi=Cl_i\}
 
 %Cada codebook é associado a uma classe fonética específica. Isto é realizado através de um treinamento supervisionado. assim: $$\hat{y}^{i}_{UP}=E\{y_{UP}|\phi=f(s=i)\} \, i=1,\ldots N$$
 
-\subsection{Estimação da Classe fonética e dos Parâmetros do Trato Vocal para ABWE}
-Para a estimação das classes fonéticas, $\phi \in \{Cl_1, \ldots, Cl_9\}$, foi utilizado o algoritmo de árvore de decisão J48 disponível em~\cite{bookweka} e~\cite{algorithmJ48}. A cada \textit{frame} de 20 ms são extraídos vetores de observação contendo os seguintes parâmetros: os 10 primeiros coeficientes de auto-correlação, a taxa de cruzamento por zero, o índice de gradiente, a energia normalizada do frame, local Kurtosis e a centróide espectral, como proposto em ~\cite{PJaxThesis}. A partir dos vetores de observação, a árvore de decisão é consultada e a classe fonética correspondente é obtida. A abordagem de agrupamento de classes similares, vide Tabela~\ref{TebelaClasses}, aumenta a robustez quanto a erros de classificação, reduzindo eventuais imprecisões de singularidades acústicas devido as classes fonéticas estimadas, quando falhas, não estarem tão distantes de suas versões corretas.
+\subsection{Estimação da Classe Fonética e dos Parâmetros do Trato Vocal para ABWE}
+Para a estimação das classes fonéticas, $\phi \in \{Cl_1, \ldots, Cl_9\}$ é utilizado o algoritmo de árvore de decisão J48~\cite{bookweka} e~\cite{algorithmJ48}. A cada \textit{frame} de 20 ms são extraídos vetores de observação contendo os seguintes parâmetros: os 10 primeiros coeficientes de auto-correlação, a taxa de cruzamento por zero, o índice de gradiente, a energia normalizada do frame, Kurtosis local e a centróide espectral, como apresentado em ~\cite{PJaxThesis}. A partir dos vetores de observação, a árvore de decisão é consultada e a classe fonética correspondente é obtida. A abordagem de agrupamento de classes similares (veja Tabela~\ref{TebelaClasses}) aumenta a robustez quanto a erros de classificação, reduzindo eventuais imprecisões de singularidades acústicas devido às classes fonéticas estimadas, quando falhas, não estarem tão distantes de suas versões corretas.
 
-Para a estimação dos parâmetros do vetor $\hat{\mathbf{q}}_{UP}$ que caracteriza o modelo do trato vocal de banda alta UP, uma vez determinada a classe, $\phi$, do quadro do segmento de fala NB em análise, as $K$ \textit{codewords} mais similares aos vetores $\mathbf{f}_{\LSF,n}$ e $\mathbf{t}_n$ do \textit{codebook} ${Y}^{\UP}_{{\CB}_{\phi}}$ são selecionadas via \textit{codebook dual} ${X}^{\NB}_{{\CB}_{\phi}}$, i.e. $\mathbf{Q}(n | Y^{\UP}_{\CB_{\phi}}) = \{\mathbf{q}^{\UP}_1(n|{X}^{\NB}_{{\CB}_{\phi}}),\mathbf{q}^{\UP}_2(n|{X}^{\NB}_{{\CB}_{\phi}}),...,\mathbf{q}^{\UP}_{K}(n|{X}^{\NB}_{{\CB}_{\phi}})\}$, e os correspondentes vetores $\mathbf{f}_{\LSF,n}$ e $\mathbf{t}_n$ de banda alta são combinados linearmente com um peso $w$ para cada \textit{codeword}. Assim,
+Para a estimação dos parâmetros do vetor $\hat{\mathbf{q}}_{UP}$ que caracteriza o modelo do trato vocal de banda alta UP, uma vez determinada a classe, $\phi$, do quadro do segmento de fala NB em análise, as $K$ \textit{codewords} mais similares aos vetores $\mathbf{f}_{\LSF,n}$ e $\mathbf{t}_n$ do \textit{codebook} ${Y}^{\UP}_{{\CB}_{\phi}}$ são selecionadas via \textit{codebook dual} ${X}^{\NB}_{{\CB}_{\phi}}$, isto é $\mathbf{Q}(n | Y^{\UP}_{\CB_{\phi}}) = \{\mathbf{q}^{\UP}_1(n|{X}^{\NB}_{{\CB}_{\phi}}),\mathbf{q}^{\UP}_2(n|{X}^{\NB}_{{\CB}_{\phi}}),...,\mathbf{q}^{\UP}_{K}(n|{X}^{\NB}_{{\CB}_{\phi}})\}$, e os correspondentes vetores $\mathbf{f}_{\LSF,n}$ e $\mathbf{t}_n$ de banda alta são combinados linearmente com um peso $w$ para cada \textit{codeword}. Assim,
 \begin{equation}
 \hat{\mathbf{q}}_{\UP}(n) = \sum_{m=1}^{K} w_m \cdot \mathbf{q}^{\UP}_{m}(n | X^{\NB}_{\CB_{\phi}}) \; \forall \; \mathbf{q}^{\UP}_m \supset [\mathbf{f}_{\LSF}, \mathbf{t}]
 \end{equation}
@@ -394,7 +394,7 @@ onde $\mathbf{q}^{\UP}_{m}$ representa as \textit{codewords} constituídas pelos 
 
 %\subsection{Contruão do Modelo Acústico}
 \subsection{Recursos para o desenvolvimento do ASR}
-O reconhecimento automático de fala é uma tecnologia dependente de dados e requer uma quantidade relativamente grande de dados rotulados para que seja possível a obtenção de taxas aceitáveis de precisão. O estado da arte em ASR baseado em HMM também exige um banco de dados de áudio (corpora), com vários locutores, e os MLs necessitam de milhões de sentenças para uma modelagem precisa da língua em questão. Desta forma, a disponibilidade de corpora é um fator primordial para o desenvolvimento de modelos acústicos e de linguagem. Um corpora típico possui arquivos de voz com as suas transcrições associados, grande quantidade de textos escritos e um dicionário fonético. Para atender tais necessidades, neste trabalho o desenvolvimento da etapa de ASR utiliza os corporas de fala disponibilizados em \cite{GrupoFalaBrasil} e \cite{YnogutiSBrT2008}.
+O reconhecimento automático de fala é uma tecnologia dependente fortemente de dados e requer uma quantidade relativamente grande de dados rotulados para que seja possível a obtenção de taxas aceitáveis de precisão. O estado da arte dos ASRs baseado em HMM também exige um banco de dados de áudio (\textit{corpora}), com vários locutores, e os MLs necessitam de milhões de sentenças para uma modelagem precisa da língua em questão. Dessa forma, a disponibilidade de \textit{corpora} é um fator primordial para o desenvolvimento de modelos acústicos e de linguagem precisos. Um \textit{corpora} típico possui arquivos de voz com as suas transcrições associados, grande quantidade de textos escritos e um dicionário fonético. Para atender tais requisitos, o desenvolvimento da etapa de ASR utiliza o \textit{corpora} de fala disponibilizados em \cite{GrupoFalaBrasil} e \cite{YnogutiSBrT2008}.
 
 %O dicionário fonético é um elemento essencial que faz a correspondência entre a grafia e a pronúncia. Na prática, a construção de um dicionário de pronúncia para ASR é realizada através de módulo de grafema-fone (G2P). A tarefa de projetar um módulo G2P é difícil de executar e diversas técnicas foram adotadas ao longo da última década [6 , 46].
 
@@ -415,20 +415,20 @@ O reconhecimento automático de fala é uma tecnologia dependente de dados e reque
 
 %Neste trabalho, para a construção do ASR foi utilizada a ferramenta HTK (\textit{hidden Markov model toolkit}) [55] por ser amplamente utilizada para desenvolvimento de  modelos acústicos. 
 
-\subsection{Contruão de Modelo Estatísticos para o ASR}
-De acordo com a equação~\ref{eqAsr02}, $P(X|\tau)$ e $P(\tau)$, são determinados a partir dos modelos acústicos e de linguagem, respectivamente. A estimação de um bom modelo acústico é considerada a etapa mais desafiadora do projeto de um sistema ASR. Nesse contexto, os procedimentos do ABWE discutidos na seção anterior são responsáveis pelo realce na matriz de observação $X$, migrando de um espaço de dados NB para WB, assim os parâmetros MFCCs análisados pelo \textit{front-end} são melhores explorados. Nesse trabalho, o software HTK foi utilizado para construir modelos acústicos usando HMMs, de acordo com as etapas descritas em~\cite{HTKBook}. Para a cosntrução do modelo de linguagem, adotou-se a ferramenta MITLM~\cite{mitlm}.
+\subsection{Construão de Modelo Estatísticos para o ASR}
+De acordo com (~\ref{eqAsr02}), $P(X|\tau)$ e $P(\tau)$ são determinados a partir dos modelos acústicos e de linguagem, respectivamente. A estimação de um satisfatório modelo acústico é considerada a etapa mais desafiadora do projeto de um sistema ASR. Nesse contexto, os procedimentos do ABWE discutidos na seção anterior são responsáveis pelo realce na matriz de observação $X$, migrando de um espaço de dados NB para WB. Assim, os parâmetros MFCCs análisados pelo \textit{front-end} são melhores explorados. Neste trabalho, nós utilizamos o software HTK para construir modelos acústicos usando HMMs, de acordo com as etapas descritas em~\cite{HTKBook}. Para a cosntrução do modelo de linguagem, adotou-se a ferramenta MITLM~\cite{mitlm}.
 
 %Nesse trabalho, o software HTK foi utilizado para construir modelos acústicos usando HMMs, de acordo com as etapas descritas em~\cite{HTKBook} e~\cite{Rabiner89}. Para a cosntrução do modelo de linguagem, adotou-se a ferramenta MITLM (\textit{The Massachusetts institute of technology language modeling})~\cite{mitlm}. 
 
 %The connected digit recognizer used in this work has beendeveloped using the HTK toolkit
 %Os modelos acústicos foram treinados usando o corpora ynoguti, que corresponde a 4h horas de áudio, e o dicionário fonético UFPAdic.
 
-Abaixo segue uma lista com detalhes sobre as configurações usadas:
+Abaixo seguem alguns detalhes sobre as configurações utilizadas:
 %Abaixo está uma lista com detalhes sobre a configuração usada:
 
 \begin{itemize}
-\item Comprimento da janela: 25ms com sobreposição de 10ms.
-\item Coeficientes por segmento: Energia + 12 coeficientes cepstrais da escala mel + primeiras e segundas derivadas.% No total, o vetor calculado para cada segmento tem 39 coeficientes.
+\item Comprimento da janela: 25 ms com sobreposição de 10 ms.
+\item Coeficientes por segmento: Energia, 12 coeficientes cepstrais da escala mel, primeiras e segundas derivadas.% No total, o vetor calculado para cada segmento tem 39 coeficientes.
 \item Modelagem acústica: HMMs contínuos com 3 estados esquerda-direita. Modelos trifones \textit{cross-word} construídos a partir de 38 monofones.
 \item Modelagem da linguagem: Modelo tri-grama treinado com 1.534.980 sentenças e técnica de suavização de \textit{Kneser-Ney}~\cite{mitlm}.
 \end{itemize}
@@ -463,7 +463,7 @@ Abaixo segue uma lista com detalhes sobre as configurações usadas:
 
 \section{Resultados e Análise de Desempenho}
 \label{resultados}
-Para análise de resultados, o corpora \textit{LapsBenchmark}~\cite{GrupoFalaBrasil} foi adotado e os resultados das WERs (definada na Equação~\ref{WER}), foram utilizados para avalização dos sistemas. Os resultados obtidos com os sistemas NB convencional da PSTN e o sistema WB foram utilizados como referência para a avaliação de desempenho do sistema NSR desenvolvido a partir da estratégia proposta neste artigo. A Tabela~\ref{resultado} apresenta os resultados obtidos a partir do sistema WB original, do sistema NB convencional e do sistema NSR onde os sinais WB são sintetizados através de ABWE.
+Para análise de resultados, o corpora \textit{LapsBenchmark}~\cite{GrupoFalaBrasil} é adotado e os resultados das WERs, definada em (~\ref{WER}), são utilizados para avalização dos sistemas. Os resultados obtidos com os sistemas NB convencional da PSTN e o sistema WB são utilizados como referência para a avaliação de desempenho do sistema NSR desenvolvido a partir da estratégia proposta neste artigo. A Tabela~\ref{resultado} apresenta os resultados obtidos a partir do sistema WB original, do sistema NB convencional e do sistema NSR, no qual os sinais WB são sintetizados através de ABWE.
 
 \begin{table}[htb]
   \caption{Descrição dos testes realizados}\label{resultado}
@@ -481,7 +481,7 @@ Treinamento & Teste \\\hline
   \end{center}
 \end{table}
 
-De acordo a Tabela~\ref{resultado}, o sistema NSR proposto neste trabalho apresenta um desempenho intermediário entre os sistemas NB PSTN e o sistema WB original, resultando em ganho absoluto de $1,32$\% na WER.
+Como apresentado na Tabela~\ref{resultado}, o sistema NSR proposto neste trabalho exibe um desempenho intermediário entre os sistemas NB PSTN e o sistema WB original, resultando em ganho absoluto de $1,32$\% na WER.
 
 %O corpora \textit{LapsBenchmark} foi utilizado para avaliar os modelos. Vários testes foram realizados a fim de avaliar os melhores parâmetros de decodificação para tanto HDecode. Assim, os melhores parâmetros de descodificação para o HDecode está descrito na Tabela~\ref{hdecode}.
 %Para análise de desempenho, são utilizados os sistemas NB convencional da PSTN e WB, para efeito de comparação, e o sistema NSR a partir da estratégia proposta neste artigo. A estratégia de NSR com ABWE aqui proposta pode ser avaliada através da análise da WER, definada na Equação~\ref{WER}, do sistema proposto comparada com os sistemas em suas versões originais NB e WB. A Tabela~\ref{resultado} apresenta os resultados obtidos a partir do sinal WB original, do sinal NB convencional sem o uso de ABWE e dos sinais WB sintetizados através de ABWE.
@@ -506,7 +506,7 @@ De acordo a Tabela~\ref{resultado}, o sistema NSR proposto neste trabalho aprese
 \section{Conclusões e Comentários Finais}
 \label{conclusao}
 %De acordo com as taxas de reconhecimento obtidas, verifica-se a eficácia de sistemas ASR com ABWE. Essa melhoria é devido a maior fidelidade na representação dos componentes de frequências maiores do que 3400 Hz. 
-Neste trabalho de pesquisa, uma estratégia de NSR contendo um sistema de ABWE foi apresentada. Essa estratégia utiliza o realce do sinal NB e resulta em um sinal estimado WB capaz de fornecer descritores cepstrais mais discriminativos ao ASR. O sinal WB estimado é usado para a criação de modelos acústicos com maior riqueza espectral quando comparados às suas versões NB convencionais provenientes da PSTN. Resultados de avaliações objetivas também ratificam tais afirmações.
+Neste trabalho de pesquisa, uma estratégia de NSR contendo um sistema de ABWE foi apresentada. Essa estratégia utiliza o realce do sinal NB e resulta em um sinal estimado WB capaz de fornecer descritores cepstrais mais discriminativos ao ASR. O sinal WB estimado foi usado para a criação de modelos acústicos com maior riqueza espectral quando comparados às suas versões NB convencionais provenientes da PSTN. Resultados de avaliações objetivas também ratificam tais afirmações.
 %De acordo com as representações dos envelopes estimados, comparados às suas versões originais NB e WB, pode ser constatado um melhor desempenho do sinal WB sintetizado através da utilização de classificação fonética com nove classes distintas. Essa melhoria é devido a maior fidelidade na representação dos componentes de frequências maiores do que 5000 Hz.
 
 
