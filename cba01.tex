@@ -76,19 +76,18 @@ Florianópolis, SC - Brasil}
 
 \selectlanguage{english}
 \begin{abstract}
- This work presents a framework for the implementation automatic speech recognition systems (ASR) for Brazilian Portuguese applied to the public switched telephone network (PSTN) using artificial bandwidth extension (ABWE). The state of the art shows that ASR systems operating with narrowband signals (NB) show lower performance systems that operate wideband signals (WB). In order to improve systems for PSTN, an acoustic model (MA) is developed based on synthetic WB signals estimated from NB signals applied to a ABWE system dedicated to phonetic classes of speech signals. Results of word error rate (WER) are evaluated and verified the effectiveness of framework implemented.
+ This work presents a framework for the implementation automatic speech recognition systems (ASR) for Brazilian Portuguese applied to the public switched telephone network (PSTN) using artificial bandwidth extension (ABWE). The state of the art shows that ASR systems operating with narrowband signals (NB) show lower performance systems that operate wideband signals (WB). In order to improve on PSTN ASR systems are used for the development of an acoustic model (AM) as well as attributes of the speech signal extraction step, synthetic estimated WB signals from the NB enhancement signals applied to a ABWE system. Results of word error rate (WER) are evaluated and verified the effectiveness of framework implemented.
 \end{abstract}
 
 \keywords{Automatic speech recognition, artificial bandwidth extension, speech enhancement.}
 
 \selectlanguage{brazil}
 \begin{abstract}
- Este trabalho apresenta um \textit{framework} para a implementação de sistemas de reconhecimento automático de fala (\textit{automatic speech recognition} - ASR) para o português brasileiro aplicados à rede pública de telefonia (\textit{public switched telephone network} - PSTN) usando extensão artificial de largura de banda (\textit{artificial bandwidrh extension} - ABWE). O estado da arte reporta que sistemas de ASR que decodificam sinais de banda estreita (\textit{narrowband} - NB) apresentam desempenho inferior aos sistemas que operam com sinais de banda larga (\textit{wideband} - WB). Visando o aprimoramento de sistemas de ASR em PSTN, um modelo acústico (MA) é desenvolvido com base em sinais sintéticos WB estimados a partir do realce de sinais NB através de um sistema de ABWE. Resultados de taxa de erro de reconhecimento são avaliados e comprovam a eficácia do \textit{framework} implementado.
+ Este trabalho apresenta um \textit{framework} para a implementação de sistemas de reconhecimento automático de fala (\textit{automatic speech recognition} - ASR) para o português brasileiro aplicados à rede pública de telefonia (\textit{public switched telephone network} - PSTN) usando extensão artificial de largura de banda (\textit{artificial bandwidrh extension} - ABWE). O estado da arte reporta que sistemas de ASR que decodificam sinais de banda estreita (\textit{narrowband} - NB) apresentam desempenho inferior aos sistemas que operam com sinais de banda larga (\textit{wideband} - WB). Visando o aprimoramento de sistemas de ASR em PSTN, são utilizados, para o desenvolvimento de um modelo acústico (MA) bem como na etapa de extração de atributos do sinal de fala, sinais sintéticos WB estimados a partir do realce de sinais NB através de um sistema de ABWE. Resultados de taxa de erro de reconhecimento são avaliados e comprovam a eficácia do \textit{framework} implementado.
 \end{abstract}
 
 \keywords{Reconhecimento automático de fala, extensão de largura de banda, realce do sinal de fala.}
 ]
-
 % CONTRIBUIÇÃO
 \selectlanguage{brazil}
 \section{Introdução}
@@ -113,7 +112,7 @@ Visando a obtenção de melhores taxas de reconhecimento, sistemas de ASR desenvol
 %Sistemas de ASR desenvolvidos para \textit{desktops} utilizam sinais de fala em banda larga (\textit{wideband} - WB) amostrados geralmente a taxas maiores do que 16 kHz. Sistemas aplicados à PSTN utilizam sinais de banda estreita (\textit{narowband} - NB) amostrados a 8 kHz e apresentam largura de banda de 300 a 3400 Hz. Devido às idiosincrasias do canal telefônica da PSTN \cite{EnioSBrT2013}, além da perda de naturalidade e inteligibilidade, esses sinais quando comparados com sinais de fala WB com largura de banda entre 50 e 7000 Hz, também apresentam perdas de desempenho em sistemas de ASR \cite{SpokenLanguage}.
 %Para garantir uma qualidade satisfatória do sinal de fala, Para um melhor aproveitamento do spectro do sinal de fala, sistemas de ASR desenvolvidos para \textit{desktops} utilizam sinais de fala em banda larga (\textit{wideband} - WB) amostrados geralmente a taxas maiores do que 16 kHz, enquanto que sistemas aplicados à PSTN utilizam sinais de banda estreita (\textit{narowband} - NB) amostrados a 8 kHz e apresentam largura de banda de 300 a 3400 Hz. Devido às idiosincrasias do canal telefônica da PSTN \cite{EnioSBrT2013}, além da perda de naturalidade e inteligibilidade, esses sinais quando comparados com sinais de fala WB com largura de banda entre 50 e 7000 Hz, também apresentam perdas de desempenho em sistemas de ASR \cite{SpokenLanguage}.
 
-Em \cite{EnioSBrT2013}, \cite{Can2011} e \cite{Bernd2007}, para contornar as limitações da comunicação em NB, a extensão artificial de largura de banda (\textit{artificial bandwidrh extension} - ABWE) é adotada como uma alternativa interessante, capaz de proporcionar melhorias na qualidade dos sinais de fala, tornando-os mais próximos aos sinais WBs e, consequentemente, mais agradáveis aos usuários de PSTN.
+Em \cite{Bauer2014}, \cite{EnioSBrT2013} e \cite{Bernd2007}, para contornar as limitações da comunicação em NB, a extensão artificial de largura de banda (\textit{artificial bandwidrh extension} - ABWE) é adotada como uma alternativa interessante, capaz de proporcionar melhorias na qualidade dos sinais de fala, tornando-os mais próximos aos sinais WBs e, consequentemente, mais agradáveis aos usuários de PSTN.
 
 Portanto, visando explorar os benefícios dos sistemas ABWE, assim como os recursos computacionais em servidores remotos, neste trabalho, sugerimos a inclusão de um sistema de ABWE como uma etapa antecessora ao \textit{front-end} em um sistema de ASR utilizando a metodologia NSR. Nesse contexto, a metodologia NSR surge como uma alternativa interessante por apresentar como principal vantagem o escalonamento dos recursos computacionais disponíveis em um servidor \cite{Sunil2012}, tornando possível um processamento independente dos componentes de \textit{hardwares} dos aparelhos telefônicos.
 %Portanto, visando explorar os benefícios dos sistemas ABWE, assim como os recursos computacionais em servidores remotos, neste trabalho, sugerimos a inclusão de um sistema de ABWE como uma etapa antecessora ao \textit{front-end} em um sistema de ASR utilizando a metodologia NSR. Nesse contexto, a metodologia NSR surge como uma alternativa interessante por apresentar como principal vantagem a utilização de maiores recursos de processamento computacional e memória disponíveis no servidor \cite{Sunil2012}, tornando possível um processamento independente dos \textit{hardwares} presentes nos aparelhos telefônicos.
@@ -213,27 +212,28 @@ m=M(f)=1125ln (1 + \frac{f}{700})
 %\end{equation}
 %$$m=M(f)=1125ln (1 + \frac{f}{700})$$
 %$$f = M^{-1}(m)=700(e^{\frac{m}{1125}}-1)$$
-Onde $f$ representa os coeficientes de frequência na escala Hertz. Nesse contexto, o procedimento de extração de atributos consiste em dividir o espectro do sinal em $B$ bandas com frequências centrais igualmente espaçadas na escala mel. Essas bandas de frequências são dispostas através de bancos de filtros triangulares e, para cada banda, os valores do logarítmo da energia e da transformada discreta do cosseno (\textit{Discrete Cosine Transform-DCT}	) são computatos. Os valores resultantes compõem os coeficientes MFCCs, como ilustrado no diagrama da Figura~\ref{FigMfccScheme}.
+Onde $f$ representa os coeficientes de frequência na escala Hertz.
+
+O procedimento de extração de atributos consiste em dividir o espectro do sinal em $B$ bandas com frequências centrais igualmente espaçadas na escala mel. Essas bandas de frequências são dispostas através de bancos de filtros triangulares e, para cada banda, os valores do logarítmo da energia e da transformada discreta do cosseno (\textit{Discrete Cosine Transform-DCT}) são computatos. Os valores resultantes compõem os coeficientes MFCCs, como ilustrado no diagrama da Figura~\ref{FigMfccScheme}. Dessa forma, as $B$ bandas de frequência representam uma etapa de grande valia para a construção bem sucedida de descritores discriminativos que compõem os vetores de observação MFCCs.
 \begin{figure}[h]
 \center
 \includegraphics[width=8cm]{figures/mfcc-scheme.eps}
 \caption{\label{FigMfccScheme}Diagrama com os passos para extração de atributos MFCC.}
 \end{figure}
-Dessa forma, as $B$ bandas de frequência representam uma importante etapa para a construção bem sucedida de descritores discriminativos que compõem os vetores de observação MFCCs.
 
-Portanto, a resolução dos compenentes espectrais, ou seja, a resolução em frequência é diretamente proporcional a qualidade dos descritores MFCCs. Então, por apresentarem uma maior faixa de frequência, sinais WB possuem uma quantidade maior de descritores na análise MFCC quando comparados à sinais NB~\cite{Bauer2014}. Entretanto, sinais NB podem ser aprimorados através do sistema de ABWE que possibilita a estimação e sínteze de novos componentes de frequência capazes de ampliar a resolução do espectro e preencher mais filtros triangulares dispostos na escala mel. A Figura~\ref{FigBancoFiltro} ilustra o processo de distribuição dos espectros NB e WB nos filtros triangulares correspondentes as $B$ bandas de frequência.
+Portanto, a largura de banda do espectro do sinal é diretamente proporcional a qualidade dos descritores MFCCs. Então, por apresentarem uma maior faixa de frequência, sinais WB possuem uma quantidade maior de descritores na análise MFCC quando comparados à sinais NB~\cite{Bauer2014}. Entretanto, sinais NB podem ser aprimorados através do sistema de ABWE que possibilita a estimação e sínteze de novos componentes de frequência capazes de ampliar a largura de banda do espectro e preencher mais filtros triangulares dispostos na escala mel. A Figura~\ref{FigBancoFiltro} ilustra o processo de distribuição dos espectros NB e WB nos filtros triangulares correspondentes as $B$ bandas de frequência.
 
 %quanto mais informações discriminativas, mais rico será o vertor de observação MFCC. 
 %A Fig.~\ref{FigBancoFiltro} ilustra a distribuição dos filtros triangulares no dominio da frequencia para espectros de sianis WB e NB.
 \begin{figure}[h]
 \center
 \includegraphics[width=8cm]{figures/BancoFiltros.eps}
-\caption{\label{FigBancoFiltro}Distribuição dos espectros NB e WB nos B bancos de filtros triangulares.}
+\caption{\label{FigBancoFiltro}Distribuição dos espectros NB e WB nos $B$ bancos de filtros triangulares.}
 \end{figure}
 
 \section{Background em extensão artificial de largura de banda}
 \label{backgroundABWE}
-O objetivo de um sistema de ABWE é realçar o sinal de fala NB, aprimorando sua qualidade e fazendo com que esse sinal se assemelhe à um sinal WB. Isso é possível através da estimação dos componentes de frequências acima de $3.4$ kHz. Assim, a idéia básica de um sistema de ABWE é recriar artificialmente componentes de alta frequência, convertendo um sinal NB em um sinal WB, isto é, restaurando as propriedades acústicas pertinentes a WB~\cite{EnioSBrT2013}.
+O objetivo de um sistema de ABWE é realçar o sinal de fala NB, aprimorando sua qualidade e fazendo com que esse sinal se assemelhe à um sinal WB. Isso é possível através da estimação dos componentes de frequências acima de $3.4$ kHz. Assim, a idéia básica de um sistema de ABWE é recriar artificialmente componentes de alta frequência, convertendo um sinal NB em um sinal WB, isto é, restaurando as propriedades acústicas pertinentes a WB~\cite{EnioSBrT2013},~\cite{Bauer2014}.
 %O objetivo de um sistema de ABWE é realçar o sinal de fala NB, aprimorando sua qualidade e fazendo com que esse sinal se assemelhe à um sinal WB através da estimação dos componentes de frequências acima de $3.4$ kHz. A idéia básica de um sistema de ABWE é recriar artificialmente componentes de alta frequência, convertendo um sinal NB em um sinal WB, isto é, restaurando as propriedades acústicas pertinentes a WB. Essa técnica assume que ambos sinais, NB e WB, são gerados pelo mesmo modelo fonte-filtro de produção da fala~\cite{EnioSBrT2013}.
 
 \subsection{Sistema de ABWE}
@@ -367,14 +367,14 @@ X^{\NB}_{{\CB}_{\phi}}=E\{X^{\NB} | \phi=Cl_i\}
 Para a estimação das classes fonéticas, $\phi \in \{Cl_1, \ldots, Cl_9\}$ é utilizado o algoritmo de árvore de decisão J48~\cite{bookweka}, ~\cite{algorithmJ48}. A cada \textit{frame} de 20 ms são extraídos vetores de observação contendo os seguintes parâmetros: os 10 primeiros coeficientes de auto-correlação, a taxa de cruzamento por zero, o índice de gradiente, a energia normalizada do frame, Kurtosis local e a centróide espectral, como apresentado em ~\cite{PJaxThesis}. A partir dos vetores de observação, a árvore de decisão é consultada e a classe fonética correspondente é obtida. A abordagem de agrupamento de classes similares (veja Tabela~\ref{TebelaClasses}) aumenta a robustez quanto a erros de classificação, reduzindo eventuais imprecisões de singularidades acústicas. A robustez é garantida porque mesmo havendo falhas de classificação, as classes fonéticas estimadas não estarão tão distantes de suas versões corretas.
 %Para a estimação das classes fonéticas, $\phi \in \{Cl_1, \ldots, Cl_9\}$ é utilizado o algoritmo de árvore de decisão J48~\cite{bookweka}, ~\cite{algorithmJ48}. A cada \textit{frame} de 20 ms são extraídos vetores de observação contendo os seguintes parâmetros: os 10 primeiros coeficientes de auto-correlação, a taxa de cruzamento por zero, o índice de gradiente, a energia normalizada do frame, Kurtosis local e a centróide espectral, como apresentado em ~\cite{PJaxThesis}. A partir dos vetores de observação, a árvore de decisão é consultada e a classe fonética correspondente é obtida. A abordagem de agrupamento de classes similares (veja Tabela~\ref{TebelaClasses}) aumenta a robustez quanto a erros de classificação, reduzindo eventuais imprecisões de singularidades acústicas devido às classes fonéticas estimadas, quando falhas, não estarem tão distantes de suas versões corretas.
 
-Para a estimação dos parâmetros do vetor $\hat{\mathbf{q}}_{UP}$ que caracteriza o modelo do trato vocal de banda alta UP, uma vez determinada a classe, $\phi$, do quadro do segmento de fala NB em análise, as $K$ \textit{codewords} mais similares aos vetores $\mathbf{f}_{\LSF,n}$ e $\mathbf{t}_n$ do \textit{codebook} ${Y}^{\UP}_{{\CB}_{\phi}}$ são selecionadas via \textit{codebook dual} ${X}^{\NB}_{{\CB}_{\phi}}$, isto é,
+Para a estimação dos parâmetros do vetor que caracteriza o modelo do trato vocal de banda alta UP, $\hat{\mathbf{q}}_{UP}$, uma vez determinada a classe, $\phi$, do \textit{frame} do segmento de fala NB em análise, as $K$ \textit{codewords} mais similares aos vetores $\mathbf{f}_{\LSF,n}$ e $\mathbf{t}_n$ do \textit{codebook} ${Y}^{\UP}_{{\CB}_{\phi}}$ são selecionadas via \textit{codebook dual} ${X}^{\NB}_{{\CB}_{\phi}}$, isto é,
 \begin{equation}
 \begin{array}{l}
 \mathbf{Q}(n | Y^{\UP}_{\CB_{\phi}}) = \{\mathbf{q}^{\UP}_1(n|{X}^{\NB}_{{\CB}_{\phi}}),\mathbf{q}^{\UP}_2(n|{X}^{\NB}_{{\CB}_{\phi}}),..., \\
 \mathbf{q}^{\UP}_{K}(n|{X}^{\NB}_{{\CB}_{\phi}})\}
 \end{array}
 \end{equation}
-e os correspondentes vetores $\mathbf{f}_{\LSF,n}$ e $\mathbf{t}_n$ de banda alta são combinados linearmente com um peso $w$ para cada \textit{codeword}. Assim,
+e os correspondentes vetores $\mathbf{f}_{\LSF,n}$ e $\mathbf{t}_n$ de banda alta são combinados linearmente com um peso $w$, calculado via distância euclidiana~\cite{unno05}, para cada \textit{codeword}. Assim,
 \begin{equation}
 \hat{\mathbf{q}}_{\UP}(n) = \sum_{m=1}^{K} w_m \cdot \mathbf{q}^{\UP}_{m}(n | X^{\NB}_{\CB_{\phi}}) \; \forall \; \mathbf{q}^{\UP}_m \supset [\mathbf{f}_{\LSF}, \mathbf{t}]
 \end{equation}
@@ -425,7 +425,7 @@ O reconhecimento automático de fala é uma tecnologia dependente fortemente de da
 %Neste trabalho, para a construção do ASR foi utilizada a ferramenta HTK (\textit{hidden Markov model toolkit}) [55] por ser amplamente utilizada para desenvolvimento de  modelos acústicos. 
 
 \subsection{Construão de Modelo Estatísticos para o ASR}
-Em (\ref{eqAsr02}), $P(X|\tau)$ e $P(\tau)$ são determinados a partir dos modelos acústicos e de linguagem, respectivamente. A estimação de um satisfatório modelo acústico é considerada a etapa mais desafiadora do projeto de um sistema ASR. Nesse contexto, os procedimentos do ABWE discutidos na seção anterior são responsáveis pelo realce na matriz de observação $X$, migrando de um espaço de dados NB para WB. Assim, os parâmetros MFCCs análisados pelo \textit{front-end} são melhores explorados. Neste trabalho, nós utilizamos o software HTK para construir modelos acústicos usando HMMs, de acordo com as etapas descritas em~\cite{HTKBook}. Para a cosntrução do modelo de linguagem, adotou-se a ferramenta MITLM~\cite{mitlm}.
+Em (\ref{eqAsr02}), $P(X|\tau)$ e $P(\tau)$ são determinados a partir dos modelos acústicos e de linguagem, respectivamente. A estimação de um satisfatório modelo acústico é considerada a etapa mais desafiadora do projeto de um sistema ASR. Nesse contexto, os procedimentos do ABWE discutidos na seção anterior são responsáveis pelo realce na matriz de observação $X$, migrando de um espaço de dados NB para WB. Assim, os parâmetros MFCCs analisados pelo \textit{front-end} contém informações espectrais mais discriminativas. Neste trabalho, nós utilizamos o software HTK para construir modelos acústicos usando HMMs, de acordo com as etapas descritas em~\cite{HTKBook}. Para a cosntrução do modelo de linguagem, adotou-se a ferramenta MITLM~\cite{mitlm}.
 
 %Nesse trabalho, o software HTK foi utilizado para construir modelos acústicos usando HMMs, de acordo com as etapas descritas em~\cite{HTKBook} e~\cite{Rabiner89}. Para a cosntrução do modelo de linguagem, adotou-se a ferramenta MITLM (\textit{The Massachusetts institute of technology language modeling})~\cite{mitlm}. 
 
@@ -490,7 +490,7 @@ Treinamento & Teste \\\hline
   \end{center}
 \end{table}
 
-Como apresentado na Tabela~\ref{resultado}, o sistema NSR proposto neste trabalho exibe um desempenho intermediário entre os sistemas NB PSTN e o sistema WB original, resultando em ganho absoluto de $1,32$\% na WER.
+Como apresentado na Tabela~\ref{resultado}, o sistema NSR proposto neste trabalho exibe um desempenho intermediário entre os sistemas NB PSTN e o sistema WB original, resultando em ganho relativo de aproximadamente $4,3$\% na WER quando comparado ao sistema NB convencional da PSTN.
 
 %O corpora \textit{LapsBenchmark} foi utilizado para avaliar os modelos. Vários testes foram realizados a fim de avaliar os melhores parâmetros de decodificação para tanto HDecode. Assim, os melhores parâmetros de descodificação para o HDecode está descrito na Tabela~\ref{hdecode}.
 %Para análise de desempenho, são utilizados os sistemas NB convencional da PSTN e WB, para efeito de comparação, e o sistema NSR a partir da estratégia proposta neste artigo. A estratégia de NSR com ABWE aqui proposta pode ser avaliada através da análise da WER, definada na Equação~\ref{WER}, do sistema proposto comparada com os sistemas em suas versões originais NB e WB. A Tabela~\ref{resultado} apresenta os resultados obtidos a partir do sinal WB original, do sinal NB convencional sem o uso de ABWE e dos sinais WB sintetizados através de ABWE.
@@ -515,7 +515,7 @@ Como apresentado na Tabela~\ref{resultado}, o sistema NSR proposto neste trabalh
 \section{Conclusões e Comentários Finais}
 \label{conclusao}
 %De acordo com as taxas de reconhecimento obtidas, verifica-se a eficácia de sistemas ASR com ABWE. Essa melhoria é devido a maior fidelidade na representação dos componentes de frequências maiores do que 3400 Hz. 
-Neste trabalho de pesquisa, uma estratégia de NSR contendo um sistema de ABWE foi apresentada. Essa estratégia utiliza o realce do sinal NB e resulta em um sinal estimado WB capaz de fornecer descritores cepstrais mais discriminativos ao ASR. O sinal WB estimado foi usado para a criação de modelos acústicos com maior riqueza espectral quando comparados às suas versões NB convencionais provenientes da PSTN. Resultados de avaliações objetivas também ratificam tais afirmações.
+Neste trabalho de pesquisa, uma estratégia de NSR utilizando um sistema de ABWE foi apresentada. Essa estratégia implementa o realce do sinal NB e resulta em um sinal estimado WB capaz de fornecer descritores cepstrais mais discriminativos ao ASR. O sinal WB estimado foi usado para a criação de modelos acústicos com maior riqueza espectral quando comparados às suas versões NB convencionais provenientes da PSTN. Resultados de avaliações objetivas também ratificam tais afirmações.
 %De acordo com as representações dos envelopes estimados, comparados às suas versões originais NB e WB, pode ser constatado um melhor desempenho do sinal WB sintetizado através da utilização de classificação fonética com nove classes distintas. Essa melhoria é devido a maior fidelidade na representação dos componentes de frequências maiores do que 5000 Hz.
 
 
