@@ -93,7 +93,9 @@ Florianópolis, SC - Brasil}
 \section{Introdução}
 Atualmente o mercado de telefonia dispõe de diversos serviços interativos, tais como os serviços presentes em sistemas automatizados de \textit{help desk}, portais de voz, gerenciamento de diálogos em unidades de resposta audível (URA) e outros tipos de atendimento via \textit{call centers} \cite{Oliveira2012}, como ilustrado na Fig.~\ref{ExemploURA}.
 
-Tais serviços auxiliam o acesso de usuários da rede pública de telefonia (\textit{public switched telephone network} - PSTN) a informações via navegação em menus interativos. Esses menus podem ser acessados com a ajuda do teclado telefônico ou diretamente através de comandos de fala, em que o assunto desejado pelo usuário é automaticamente identificado usando sistemas de reconhecimento automático de fala (\textit{automatic speech recognition} - ASR) aplicados à PSTN \cite{Nelson2011}. Como a tecnologia de serviços comandados por fala é altamente dependente do desempenho dos sistemas de ASR, as pesquisas sobre modelagem estatísticas de ASR continuam em franca evolução e se destacam como um tópico ativo do estado da arte em processamento digital de sinais \cite{Livescu2012}, \cite{Shaughnessy2013}, \cite{Bauer2014}.
+Tais serviços auxiliam o acesso de usuários da rede pública de telefonia (\textit{public switched telephone network} - PSTN) a informações via navegação em menus interativos. Esses menus podem ser acessados com a ajuda do teclado telefônico ou diretamente através de comandos de fala, em que o assunto desejado pelo usuário é automaticamente identificado usando sistemas de reconhecimento automático de fala (\textit{automatic speech recognition} - ASR) aplicados à PSTN \cite{Nelson2011}.
+
+Tendo em vista que a tecnologia de serviços comandados por fala é altamente dependente do desempenho dos sistemas de ASR, as pesquisas sobre modelagem estatísticas de ASR continuam em franca evolução e se destacam como um tópico ativo do estado da arte em processamento digital de sinais \cite{Livescu2012}, \cite{Shaughnessy2013}, \cite{Bauer2014}.
 
 \begin{figure}[h]
 %\begin{minipage}{0.5\linewidth}
@@ -106,7 +108,7 @@ Tais serviços auxiliam o acesso de usuários da rede pública de telefonia (\texti
 Em resumo, um sistema típico de ASR é composto por duas etapas principais, o \textit{front-end} e o \textit{back-end}. A etapa de \textit{front-end} recebe o sinal de fala e realiza o procedimento de extração de vetores de observação contendo informações codificadas das palavras pronunciadas. A etapa de \textit{back-end}, composta por um decodificador, dicionário fonético, modelo acústico e modelo de linguagem, é responsável pela decodificação dos vetores de observação e pelo processo de ``busca'' das palavras pronunciadas no sinal de fala \cite{HTKBook}, \cite{SpokenLanguage}.
 %Em resumo, um sistema típico de ASR é composto por duas etapas principais, o \textit{front-end} e o \textit{back-end}. A etapa de \textit{front-end} recebe o sinal de fala e realiza o procedimento de extração de vetores de observação contendo informações codificadas do sinal. A etapa de \textit{back-end}, composta por um decodificador, dicionário fonético, modelo acústico e modelo de linguagem, é responsável pelo processo de reconhecimento dos vetores de observação e identificação dos fonemas pronunciados no sinal de fala~\cite{HTKBook}, \cite{SpokenLanguage}.
 
-Sistemas de ASR aplicados a redes de telefonia podem ser implementados de acordo com três diferentes metodologias: reconhecimento de fala embarcado (\textit{embedded speech recognition} - ESR), que contêm as etapas de \textit{front-end} e \textit{back-end} embarcadas no aparelho telefônico; reconhecimento de fala distribuído (\textit{distributed speech recognition} - DSR), em que o \textit{front-end} é embarcado no aparelho telefônico e o \textit{back-end} é localizado em um servidor externo; e o reconhecimento de fala em rede (\textit{network speech recognition} - NSR), em que tanto o \textit{front-end} quanto o \textit{back-end} são localizados em um servidor remoto e o aparelho telefônico simplesmente envia o sinal de fala para ser processado nesse servidor \cite{Dmitry2006}.
+Os sistemas de ASR aplicados a redes de telefonia podem ser implementados de acordo com três diferentes metodologias: reconhecimento de fala embarcado (\textit{embedded speech recognition} - ESR), que contêm as etapas de \textit{front-end} e \textit{back-end} embarcadas no aparelho telefônico; reconhecimento de fala distribuído (\textit{distributed speech recognition} - DSR), em que o \textit{front-end} é embarcado no aparelho telefônico e o \textit{back-end} é localizado em um servidor externo; e o reconhecimento de fala em rede (\textit{network speech recognition} - NSR), em que tanto o \textit{front-end} quanto o \textit{back-end} são localizados em um servidor remoto e o aparelho telefônico apenas envia o sinal de fala para ser processado nesse servidor \cite{Dmitry2006}.
 
 Visando a obtenção de melhores taxas de reconhecimento, sistemas de ASR desenvolvidos para \textit{desktops} utilizam sinais de fala em banda larga (\textit{wideband} - WB) amostrados geralmente a taxas maiores do que 16 kHz. Entretanto, sistemas aplicados à PSTN utilizam sinais de banda estreita (\textit{narowband} - NB) amostrados a 8 kHz, apresentam largura de banda de 300 a 3400 Hz e, devido às idiosincrasias do canal telefônico da PSTN \cite{EnioSBrT2013}, além da perda de naturalidade e inteligibilidade, esses sinais quando comparados com sinais de fala WB com largura de banda entre 50 e 7000 Hz, também apresentam perdas de desempenho em sistemas de ASR \cite{SpokenLanguage}.
 %Sistemas de ASR desenvolvidos para \textit{desktops} utilizam sinais de fala em banda larga (\textit{wideband} - WB) amostrados geralmente a taxas maiores do que 16 kHz. Sistemas aplicados à PSTN utilizam sinais de banda estreita (\textit{narowband} - NB) amostrados a 8 kHz e apresentam largura de banda de 300 a 3400 Hz. Devido às idiosincrasias do canal telefônica da PSTN \cite{EnioSBrT2013}, além da perda de naturalidade e inteligibilidade, esses sinais quando comparados com sinais de fala WB com largura de banda entre 50 e 7000 Hz, também apresentam perdas de desempenho em sistemas de ASR \cite{SpokenLanguage}.
@@ -133,7 +135,7 @@ Este artigo está organizado como segue. Nas Seções~\ref{backgroundASR} e~\ref{ba
 
 \section{Background em reconhecimento automático de fala}
 \label{backgroundASR}
-O objetivo de um sistema de ASR é converter um sinal de fala em texto. Esta seção apresenta uma breve introdução aos sistemas de ASR.
+O objetivo de um sistema de ASR é converter um sinal de fala em texto. Esta seção apresenta uma breve introdução a esses sistemas.
 %O objetivo de um sistema de ASR é converter de maneira precisa e eficiente um sinal de fala em uma mensagem de texto. Esta seção fornece uma breve introdução aos sistemas de ASR.
 \subsection{Automatic speech recognition (ASR)}
 Um sistema típico de ASR envolve tratamentos estatísticos com base em modelos escondidos de Markov (\textit{hidden Markov model - HMM})~\cite{SpokenLanguage} e é composto por cinco blocos principais: \textit{front-end}, dicionário fonético, modelo acústico, modelo de linguagem e decodificador, sendo que os quatro últimos blocos compõem uma estrutura usualmente chamada \textit{back-end}, conforme indicado na Figura~\ref{asr01}. 
@@ -151,7 +153,7 @@ Um sistema típico de ASR envolve tratamentos estatísticos com base em modelos es
 
 %Um \textit{front-end} convencional extrai segmentos (\textit{frames}) a partir do sinal de fala e converte, a uma taxa constante (\textit{frame rate} tipicamente de 100 Hz), a cada segmento de um vector $x$ de dimensão $L$ (tipicamente, $L = 39$). Supõe-se aqui que $T$ \textit{frames} são organizados em uma matrix $X$, $L \times T$, que representa uma frase completa. Existem várias alternativas para parametrizar as formas de onda do sinal de fala, entretanto, mesmo sendo uma técnica relativemente antiga, os coeficientes cepstrais da escala Mel (\textit{Mel frequency-cepstral coefficients-MFCCs}) mostram-se eficazes e são comumente usados como entrada para o bloco de \textit{back-end} do ASR [18].
 
-O \textit{front-end} extrai segmentos (\textit{frames}) a partir do sinal de fala e parametriza cada segmento em um vector $\textbf{x}$ de dimensão $L$ (tipicamente, $L = 39$). Supõe-se aqui que $T$ \textit{frames} são organizados em uma matrix $X$, de dimensão $L \times T$, para representar uma frase. O modelo de linguagem de um sistema de ASR fornece a probabilidade $p(\tau)$ de observar uma sentença $\tau = [\omega_1, \dots, \omega_P]$ de $P$ palavras. Conceitualmente, o decodificador visa encontrar a sentença $\tau^{*}$ que maximiza a probabilidade posteriori dada por
+O \textit{front-end} extrai segmentos (\textit{frames}) a partir do sinal de fala e parametriza cada segmento em um vector $\textbf{x}$ de dimensão $L$. Supõe-se aqui que $T$ \textit{frames} são organizados em uma matriz $X$, de dimensão $L \times T$, para representar uma frase. O modelo de linguagem de um sistema de ASR fornece a probabilidade $p(\tau)$ de observar uma sentença $\tau = [\omega_1, \dots, \omega_P]$ de $P$ palavras. Conceitualmente, o decodificador visa encontrar a sentença $\tau^{*}$ que maximiza a probabilidade posteriori dada por
 %O modelo de linguagem de um sistema de ASR fornece a probabilidade $p(\tau)$ de observar uma sentença $\tau = [\omega_1, \dots, \omega_P]$ de $P$ palavras. Conceitualmente, o decodificador visa encontrar a sentença $\tau^{*}$ que maximiza a probabilidade posterior dado por
 \begin{equation}
 %$$\tau^{*} = \operatorname*{arg\,max}_{\tau}p(\tau|X)=\operatorname*{arg\,max}_{\tau}\frac{p(X|\tau)p(\tau)}{p(X)}$$
@@ -194,7 +196,7 @@ Em resumo, após o treinamento dos modelos, o ASR, na fase de teste, usa o \texti
 %Neste trabalho, um motor ASR é considerado para ser composto pelo descodificador e todos os recursos necessários para a sua execução (modelo de linguagem, entre outros).
 
 \subsection{Métrica de avaliação}
-Na maioria das aplicações de ASR, a figura de mérito usada para avaliar um sistema de ASR é a taxa de erro de palavra (\textit{word error rate} - WER) e é definido como,
+Na maioria das aplicações de ASR, a figura de mérito usada para avaliar tais sistemas é a taxa de erro de palavra (\textit{word error rate} - WER) e é definido como,
 \begin{equation}
 \label{WER}
 WER=\frac{D+R}{W}\times 100\%
@@ -203,7 +205,7 @@ onde $W$ é o número de palavras na sequência de entrada, e $R$ e $D$ são o númer
 
 %\subsection{Análise do \textit{Front-End}}
 \subsection{Extração de Atributos}
-Visando a obtenção de ótimos atributos discriminativos do sinal de fala, diversas alternativas para parametrizar as formas de onda desses sinais foram e continuam sendo desenvolidas. Dentre elas, a parametrização usando os coeficientes cepstrais da escala mel (\textit{mel frequency-cepstral coefficients-MFCCs}) mostra-se eficaz e é comumente usada no bloco de \textit{front-end} do ASR~\cite{SpokenLanguage}. Essa técnica de análise utiliza a escala mel, expressa por
+Tendo em vista a obtenção de ótimos atributos discriminativos do sinal de fala, diversas alternativas para parametrizar as formas de onda desses sinais foram e continuam sendo desenvolidas. Dentre elas, a parametrização usando os coeficientes cepstrais da escala mel (\textit{mel frequency-cepstral coefficients-MFCCs}) mostra-se eficaz e é comumente usada no bloco de \textit{front-end} do ASR~\cite{SpokenLanguage}. Essa técnica de análise utiliza a escala mel, expressa por
 \begin{equation}
 m=M(f)=1125ln (1 + \frac{f}{700})
 \end{equation}
@@ -218,7 +220,7 @@ O procedimento de extração de atributos consiste em dividir o espectro do sinal 
 \begin{figure}[h]
 \center
 \includegraphics[width=8cm]{figures/mfcc-scheme.eps}
-\caption{\label{FigMfccScheme}Diagrama com os passos para extração de atributos MFCC.}
+\caption{\label{FigMfccScheme}Diagrama ilustrativo da extração de atributos MFCC.}
 \end{figure}
 
 Portanto, a largura de banda do espectro do sinal é diretamente proporcional a qualidade dos descritores MFCCs. Então, por apresentarem uma maior faixa de frequência, sinais WB possuem uma quantidade maior de descritores na análise MFCC quando comparados à sinais NB~\cite{Bauer2014}. Entretanto, sinais NB podem ser aprimorados através do sistema de ABWE que possibilita a estimação e sínteze de novos componentes de frequência capazes de ampliar a largura de banda do espectro e preencher mais filtros triangulares dispostos na escala mel. A Figura~\ref{FigBancoFiltro} ilustra o processo de distribuição dos espectros NB e WB nos filtros triangulares correspondentes as $B$ bandas de frequência.
@@ -272,7 +274,7 @@ Os estágios que compõem o sistema ABWE são descritos com detalhes em ~\cite{Enio
 
 \section{\textit{Framework}: ASR com ABWE}
 \label{FrameworkASRABWE}
-No cenário de telefonia, sistemas NSR são adequados à utilização dos recusrsos computacionais de um servidor remoto. Dessa forma, técnicas de processamento digital de sinais, tais como o realce da fala, podem ser melhor exploradas. Nesse contexto, este artigo propõe a utilização de um \textit{framework} em que o sinal NB $s_{NB}$, fornecido pela PSTN, é realçado através de procedimentos de ABWE, gerando assim um sinal WB sintético $\hat{s}_{WB}$ na entrada do ASR, como ilustrado na Fig.~\ref{FigSistemaNSR}.
+No cenário de telefonia, sistemas NSR são adequados à utilização dos recusrsos computacionais de um servidor remoto. Assim, técnicas de processamento digital de sinais, tais como o realce da fala, podem ser melhor exploradas. Nesse contexto, este artigo propõe a utilização de um \textit{framework} em que o sinal NB $s_{NB}$, fornecido pela PSTN, é realçado através de procedimentos de ABWE, gerando assim um sinal WB sintético $\hat{s}_{WB}$ na entrada do ASR, como ilustrado na Fig.~\ref{FigSistemaNSR}.
 \begin{figure*}
   \centering
   %\includegraphics{figuras/Fig_1.eps}
@@ -281,7 +283,7 @@ No cenário de telefonia, sistemas NSR são adequados à utilização dos recusrsos c
   \centering
   \caption{\label{FigSistemaNSR}Diagrama do ASR com ABWE em um sistema NSR.}
 \end{figure*}
-Dessa maneira, o sistema NSR será composto pelos blocos de ABWE, seguido dos blocos do ASR: \textit{front-end} e \textit{back-end}.
+Portanto, o sistema NSR será composto pelos blocos de ABWE, seguido dos blocos do ASR: \textit{front-end} e \textit{back-end}.
 
 %Sendo assim, de acordo com a proposta de \textit{framework} ilustrada na Fig.~\ref{FigSistemaNSR}, no sistema NSR estão contidos os blocos de ABWE, seguido dos blocos do ASR: \textit{front-end} e \textit{back-end}. Estes blocos são descritos nas seções subsequentes.
 
@@ -296,9 +298,9 @@ e
 \begin{equation}
        \mathbf{f}_{\LSF,n} = [f_{\LSF,n}(1),\ldots,f_{\LSF,n}(19)]\transp
 \end{equation}
-onde o vetor $\mathbf{t}_n$ representa o envelope temporal contendo energias logarítmicas de $16$ subquadros ($1,25$ ms cada) \cite{Bernd2007} e o vetor $\mathbf{f}_{\LSF,n}$ contém os componentes LSFs que caracterizam o envelope espectral. Tais parâmetros são estimados através de consulta a um conjunto de \textit{codebooks} selecionados de acordo com suas classes fonéticas~\cite{EnioSBrT2013}. 
+onde o vetor $\mathbf{t}_n$ representa o envelope temporal contendo energias logarítmicas de $16$ subquadros ($1,25$ ms cada) \cite{Bernd2007} e o vetor $\mathbf{f}_{\LSF,n}$ contém os componentes LSFs que caracterizam o envelope espectral. 
 
-Como ilustrado na Fig.~\ref{FigTreinamentoCB}, o processo de treinamento do sistema de ABWE consiste na construção do conjunto de \textit{codebooks} correspodentes aos envelopes do trato vocal no processo de geração da fala.
+Como ilustrado na Fig.~\ref{FigTreinamentoCB}, o processo de treinamento do sistema de ABWE consiste na construção do conjunto de \textit{codebooks} correspodentes aos envelopes do trato vocal no processo de geração da fala~\cite{EnioSBrT2013}.
 
 \begin{figure}[h]
 \center
@@ -344,7 +346,7 @@ O processo de treinamento aqui utilizado considera as técnicas de \textit{codebo
   \end{center}
 \end{table}
 
-Desta maneira, um treinamento supervisionado é realizado e o agrupamento dos vetores de parâmetros $\mathbf{x}^{NB}$ e $\mathbf{y}^{UP}$ torna-se mais discriminativo. Assim cada \textit{codebook} é associado a uma classe fonética específica $\phi$, isto é, 
+Deste modo, um treinamento supervisionado é realizado e o agrupamento dos vetores de parâmetros $\mathbf{x}^{NB}$ e $\mathbf{y}^{UP}$ torna-se mais discriminativo. Assim, cada \textit{codebook} é associado a uma classe fonética específica $\phi$, isto é, 
 \begin{equation}
 \begin{array}{r}
 Y^{\UP}_{{\CB}_{\phi}}=E\{Y^{\UP} | \phi=Cl_i\}\\ % \, \in \, \Re^9 %\, \forall \, i=1 \ldots 9
@@ -364,17 +366,17 @@ X^{\NB}_{{\CB}_{\phi}}=E\{X^{\NB} | \phi=Cl_i\}
 %Cada codebook é associado a uma classe fonética específica. Isto é realizado através de um treinamento supervisionado. assim: $$\hat{y}^{i}_{UP}=E\{y_{UP}|\phi=f(s=i)\} \, i=1,\ldots N$$
 
 \subsection{Estimação da Classe Fonética e dos Parâmetros do Trato Vocal para ABWE}
-Para a estimação das classes fonéticas, $\phi \in \{Cl_1, \ldots, Cl_9\}$ é utilizado o algoritmo de árvore de decisão J48~\cite{bookweka}, ~\cite{algorithmJ48}. A cada \textit{frame} de 20 ms são extraídos vetores de observação contendo os seguintes parâmetros: os 10 primeiros coeficientes de auto-correlação, a taxa de cruzamento por zero, o índice de gradiente, a energia normalizada do frame, Kurtosis local e a centróide espectral, como apresentado em ~\cite{PJaxThesis}. A partir dos vetores de observação, a árvore de decisão é consultada e a classe fonética correspondente é obtida. A abordagem de agrupamento de classes similares (veja Tabela~\ref{TebelaClasses}) aumenta a robustez quanto a erros de classificação, reduzindo eventuais imprecisões de singularidades acústicas. A robustez é garantida porque mesmo havendo falhas de classificação, as classes fonéticas estimadas não estarão tão distantes de suas versões corretas.
+Para a estimação das classes fonéticas, $\phi \in \{Cl_1, \ldots, Cl_9\}$, o algoritmo de árvore de decisão J48 é utilizado \cite{bookweka}, \cite{algorithmJ48}. A cada \textit{frame} de 20 ms são extraídos vetores de observação contendo os seguintes parâmetros: os 10 primeiros coeficientes de auto-correlação, a taxa de cruzamento por zero, o índice de gradiente, a energia normalizada do frame, Kurtosis local e a centróide espectral, como apresentado em ~\cite{PJaxThesis}. A partir dos vetores de observação, a árvore de decisão é consultada e a classe fonética correspondente é obtida. A abordagem de agrupamento de classes similares (veja Tabela~\ref{TebelaClasses}) aumenta a robustez quanto a erros de classificação, reduzindo eventuais imprecisões de singularidades acústicas. A robustez é garantida porque mesmo havendo falhas de classificação, as classes fonéticas estimadas não estarão tão distantes de suas versões corretas.
 %Para a estimação das classes fonéticas, $\phi \in \{Cl_1, \ldots, Cl_9\}$ é utilizado o algoritmo de árvore de decisão J48~\cite{bookweka}, ~\cite{algorithmJ48}. A cada \textit{frame} de 20 ms são extraídos vetores de observação contendo os seguintes parâmetros: os 10 primeiros coeficientes de auto-correlação, a taxa de cruzamento por zero, o índice de gradiente, a energia normalizada do frame, Kurtosis local e a centróide espectral, como apresentado em ~\cite{PJaxThesis}. A partir dos vetores de observação, a árvore de decisão é consultada e a classe fonética correspondente é obtida. A abordagem de agrupamento de classes similares (veja Tabela~\ref{TebelaClasses}) aumenta a robustez quanto a erros de classificação, reduzindo eventuais imprecisões de singularidades acústicas devido às classes fonéticas estimadas, quando falhas, não estarem tão distantes de suas versões corretas.
 
-Para a estimação dos parâmetros do vetor que caracteriza o modelo do trato vocal de banda alta UP, $\hat{\mathbf{q}}_{UP}$, uma vez determinada a classe, $\phi$, do \textit{frame} do segmento de fala NB em análise, as $K$ \textit{codewords} mais similares aos vetores $\mathbf{f}_{\LSF,n}$ e $\mathbf{t}_n$ do \textit{codebook} ${Y}^{\UP}_{{\CB}_{\phi}}$ são selecionadas via \textit{codebook dual} ${X}^{\NB}_{{\CB}_{\phi}}$, isto é,
+Supõe-se aqui que $\mathbf{q}^{\UP}$ representa os vetores que caracterizam o modelo do trato vocal de banda alta, $\mathbf{q}^{\UP} \supset [\mathbf{t}, \mathbf{f}_{\LSF}]$. Assim, $\mathbf{q}^{\UP}$ é organizado em uma matriz de \textit{codewords} $\mathbf{Q}(n | Y^{\UP}_{\CB_{\phi}})$ de acordo com as suas correspondentes classes fonéticas $\phi$. Dessa maneira, para a estimação de $\hat{\mathbf{q}}_{UP}$, uma vez determinada a classe, $\phi$, do \textit{frame} do segmento de fala NB no instante $n$, as $K$ \textit{codewords} mais similares aos vetores $\mathbf{f}_{\LSF,n}$ e $\mathbf{t}_n$ do \textit{codebook} ${Y}^{\UP}_{{\CB}_{\phi}}$ são selecionadas via \textit{codebook dual} ${X}^{\NB}_{{\CB}_{\phi}}$, isto é,
 \begin{equation}
 \begin{array}{l}
 \mathbf{Q}(n | Y^{\UP}_{\CB_{\phi}}) = \{\mathbf{q}^{\UP}_1(n|{X}^{\NB}_{{\CB}_{\phi}}),\mathbf{q}^{\UP}_2(n|{X}^{\NB}_{{\CB}_{\phi}}),..., \\
 \mathbf{q}^{\UP}_{K}(n|{X}^{\NB}_{{\CB}_{\phi}})\}
 \end{array}
 \end{equation}
-e os correspondentes vetores $\mathbf{f}_{\LSF,n}$ e $\mathbf{t}_n$ de banda alta são combinados linearmente com um peso $w$, calculado via distância euclidiana~\cite{unno05}, para cada \textit{codeword}. Assim,
+e os correspondentes vetores $\mathbf{f}_{\LSF,n}$ e $\mathbf{t}_n$ de banda alta são combinados linearmente com pesos $w$, calculados via distâncias euclidianas~\cite{unno05}, para cada \textit{codeword}. Assim,
 \begin{equation}
 \hat{\mathbf{q}}_{\UP}(n) = \sum_{m=1}^{K} w_m \cdot \mathbf{q}^{\UP}_{m}(n | X^{\NB}_{\CB_{\phi}}) \; \forall \; \mathbf{q}^{\UP}_m \supset [\mathbf{f}_{\LSF}, \mathbf{t}]
 \end{equation}
@@ -384,8 +386,10 @@ e os correspondentes vetores $\mathbf{f}_{\LSF,n}$ e $\mathbf{t}_n$ de banda alt
 %\end{equation}
 onde $\mathbf{q}^{\UP}_{m}$ representa as \textit{codewords} constituídas pelos parâmetros $\mathbf{f}_{\LSF}$ e $\mathbf{t}$ de banda alta. Assim,
 \begin{equation}
-\begin{array}{c}
-\hat{s}_{\UP}(n) = \hat{s}_{\UP}^{\exci}(n) * \hat{\mathbf{q}}_{\UP}(n) \\
+\begin{array}{l}
+\hat{\mathbf{q}}^{\UP}(n) \supset [\hat{\mathbf{t}}_n, \hat{\mathbf{f}}_{\LSF,n}]\\
+\hat{s}_{\UP}(n) = [\hat{s}_{\UP}^{\exci}(n) * \hat{\mathbf{t}}_n] * \hat{\mathbf{f}}_{\LSF,n} \\
+%\hat{s}_{\UP}(n) = \hat{s}_{\UP}^{\exci}(n) * \hat{\mathbf{q}}_{\UP}(n) \\
 \hat{s}_{\WB}(n) =  \hat{s}_{\UP}(n) + s_{\NB}(n).
 \end{array}
 \end{equation}
@@ -424,7 +428,7 @@ O reconhecimento automático de fala é uma tecnologia dependente fortemente de da
 
 %Neste trabalho, para a construção do ASR foi utilizada a ferramenta HTK (\textit{hidden Markov model toolkit}) [55] por ser amplamente utilizada para desenvolvimento de  modelos acústicos. 
 
-\subsection{Construão de Modelo Estatísticos para o ASR}
+\subsection{Construção de Modelo Estatísticos para o ASR}
 Em (\ref{eqAsr02}), $P(X|\tau)$ e $P(\tau)$ são determinados a partir dos modelos acústicos e de linguagem, respectivamente. A estimação de um satisfatório modelo acústico é considerada a etapa mais desafiadora do projeto de um sistema ASR. Nesse contexto, os procedimentos do ABWE discutidos na seção anterior são responsáveis pelo realce na matriz de observação $X$, migrando de um espaço de dados NB para WB. Assim, os parâmetros MFCCs analisados pelo \textit{front-end} contém informações espectrais mais discriminativas. Neste trabalho, nós utilizamos o software HTK para construir modelos acústicos usando HMMs, de acordo com as etapas descritas em~\cite{HTKBook}. Para a cosntrução do modelo de linguagem, adotou-se a ferramenta MITLM~\cite{mitlm}.
 
 %Nesse trabalho, o software HTK foi utilizado para construir modelos acústicos usando HMMs, de acordo com as etapas descritas em~\cite{HTKBook} e~\cite{Rabiner89}. Para a cosntrução do modelo de linguagem, adotou-se a ferramenta MITLM (\textit{The Massachusetts institute of technology language modeling})~\cite{mitlm}. 
@@ -436,7 +440,7 @@ Abaixo seguem alguns detalhes sobre as configurações utilizadas:
 %Abaixo está uma lista com detalhes sobre a configuração usada:
 
 \begin{itemize}
-\item Comprimento da janela. 25 ms com sobreposição de 10 ms.
+\item Comprimento da janela. 20 ms com sobreposição de 10 ms.
 \item Coeficientes por segmento. Energia, 12 coeficientes cepstrais da escala mel, primeiras e segundas derivadas.% No total, o vetor calculado para cada segmento tem 39 coeficientes.
 \item Modelagem acústica. HMMs contínuos com 3 estados esquerda-direita. Modelos trifones \textit{cross-word} construídos a partir de 38 monofones.
 \item Modelagem da linguagem. Modelo tri-grama treinado com 1.534.980 sentenças e técnica de suavização de \textit{Kneser-Ney}~\cite{mitlm}.
