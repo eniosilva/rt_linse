@@ -301,7 +301,7 @@ Os estágios que compõem o sistema ABWE são descritos com detalhes em ~\cite{Enio
 %%ESTOU AQUI NA REVISAO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{\textcolor{green}{\textit{Estratégia}}: ASR com ABWE}
+\section{\textcolor{green}{\textit{Estratégia}} ASR com ABWE}
 \label{FrameworkASRABWE}
 No cenário de telefonia, sistemas NSR são adequados à utilização dos recusrsos computacionais de um servidor remoto. Assim, \textcolor{red}{técnicas} de processamento digital de sinais, \textcolor{green}{tal como} o realce da fala, podem ser melhor exploradas. Nesse contexto, este artigo propõe  \textcolor{blue}{uma estratégia} em que o sinal NB \textcolor{red}{$s_{NB}$}, fornecido pela PSTN, é realçado através de procedimentos de ABWE, gerando assim um sinal WB sintético \textcolor{red}{$\hat{s}_{WB}$} na entrada do ASR, como ilustrado na Fig.~\ref{FigSistemaNSR}.
 %\begin{figure*}
@@ -457,7 +457,7 @@ onde $\mathbf{q}^{\UP}_{m}$ representa as \textit{codewords} constituídas pelos 
 %Neste trabalho, para a construção do ASR foi utilizada a ferramenta HTK (\textit{hidden Markov model toolkit}) [55] por ser amplamente utilizada para desenvolvimento de  modelos acústicos. 
 
 \subsection{Construção de Modelo Estatísticos para o ASR}
-Em (\ref{eqAsr02}), $p(X|\tau)$ e $p(\tau)$ são determinados a partir dos modelos acústicos e de linguagem (MA e ML), respectivamente. A estimação de um modelo acústico satisfatório é considerada a etapa mais desafiadora do projeto de um sistema ASR. Nesse contexto, os procedimentos do ABWE discutidos na seção anterior são responsáveis pelo realce na matriz de observação $X$, migrando de um espaço de dados NB para WB. Assim, os atributos MFCCs analisados pelo \textit{front-end} contém informações espectrais mais discriminativas. Neste trabalho, utilizamos o software HTK~\cite{HTKBook} para construir modelos acústicos usando modelos escondidos de Markov (\textit{hidden Markov models} - HMMs), de acordo com as etapas descritas em~\cite{HTKBook}. Para a cosntrução do modelo de linguagem, adotou-se a ferramenta MITLM~\cite{mitlm}.
+Em (\ref{eqAsr02}), $p(X|\tau)$ e $p(\tau)$ são determinados a partir dos modelos acústicos e de linguagem (MA e ML), respectivamente. A estimação de um modelo acústico satisfatório é considerada a etapa mais desafiadora do projeto de um sistema ASR. Nesse contexto, os procedimentos do ABWE discutidos na seção anterior são responsáveis pelo realce na matriz de observação $X$, migrando de um espaço de dados NB para WB. Assim, os atributos MFCCs analisados pelo \textit{front-end} contém informações espectrais mais discriminativas. Neste trabalho, utilizamos o software HTK~\cite{HTKBook} para construir modelos acústicos usando modelos escondidos de Markov (\textit{hidden Markov models} - HMMs), de acordo com as etapas descritas em~\cite{EnioSBC2005}. Para a cosntrução do modelo de linguagem, adotou-se a ferramenta MITLM~\cite{mitlm}.
 
 %Nesse trabalho, o software HTK foi utilizado para construir modelos acústicos usando HMMs, de acordo com as etapas descritas em~\cite{HTKBook} e~\cite{Rabiner89}. Para a cosntrução do modelo de linguagem, adotou-se a ferramenta MITLM (\textit{The Massachusetts institute of technology language modeling})~\cite{mitlm}. 
 
