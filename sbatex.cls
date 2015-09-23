@@ -341,9 +341,12 @@ Automa\c{c}\~{a}o em \today}
     	\renewcommand{\HAR@and@dcu}{e}
     	\renewcommand{\HAR@and@apsr}{e}
     }
-    \citationmode{abbr}
+    \citationmode{abbr}    
     \citationstyle{dcu}
     \bibliographystyle{dcu}
+    %\citationmode{IEEEtran}
+    %\citationstyle{IEEEtran}
+    %\bibliographystyle{IEEEtran}
   }
 }
 
